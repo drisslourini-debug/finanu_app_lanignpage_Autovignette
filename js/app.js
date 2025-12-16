@@ -90,6 +90,7 @@ const heroSection = document.getElementById('heroSection');
 const quizSection = document.getElementById('quizSection');
 const resultsSection = document.getElementById('resultsSection');
 const notEligibleSection = document.getElementById('notEligibleSection');
+const liveProofBar = document.getElementById('liveProofBar');
 const progressFill = document.getElementById('progressFill');
 const currentStepSpan = document.getElementById('currentStep');
 const nextBtn = document.getElementById('nextBtn');
@@ -169,6 +170,8 @@ function startQuiz() {
     });
     
     showElement('quizSection');
+    showElement('liveProofBar');
+    showElement('activityFeed');
     hideElement('mobileStickyCta');
     
     startLiveCounter();
@@ -393,6 +396,8 @@ function showResults() {
     });
     
     showElement('resultsSection');
+    hideElement('liveProofBar');
+    hideElement('activityFeed');
     hideElement('mobileStickyCta');
     
     // Initialize step-action visibility - only Step 2 (email) is shown initially
@@ -428,6 +433,8 @@ function showNotEligible() {
     });
     
     showElement('notEligibleSection');
+    hideElement('liveProofBar');
+    hideElement('activityFeed');
     hideElement('mobileStickyCta');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -463,6 +470,8 @@ function resetQuiz() {
     notEligibleSection.style.display = 'none';
     resultsSection.style.display = 'none';
     quizSection.style.display = 'flex';
+    showElement('liveProofBar');
+    showElement('activityFeed');
     if (mobileStickyCta) {
         mobileStickyCta.classList.remove('hidden');
     }
@@ -488,6 +497,8 @@ function goBackToHome() {
             section.classList.add('hidden');
         }
     });
+    hideElement('liveProofBar');
+    hideElement('activityFeed');
     
     // Show hero section
     if (heroSection) {
