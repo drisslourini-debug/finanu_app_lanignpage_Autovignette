@@ -1139,14 +1139,21 @@ img {
 
 .checklist-item {
     display: flex;
-    align-items: center;
-    gap: 16px;
+    flex-direction: column;
+    gap: 0;
     padding: 18px 20px;
     background: white;
     border-radius: 12px;
     border: 2px solid #e9ecef;
     transition: all 0.3s ease;
     position: relative;
+}
+
+.checklist-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
 }
 
 .checklist-item.completed {
@@ -1219,6 +1226,7 @@ img {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    min-width: 0;
 }
 
 .check-content strong {
@@ -4021,12 +4029,21 @@ img {
    INLINE STEP ACTIONS
    =================================== */
 .step-action {
-    margin-top: 15px;
+    margin-top: 16px;
     padding: 20px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 12px;
     border: 2px dashed rgba(37, 99, 235, 0.3);
     animation: slideDown 0.3s ease-out;
+    display: none;
+}
+
+.checklist-item.active .step-action {
+    display: block;
+}
+
+.checklist-item.completed .step-action {
+    display: none;
 }
 
 @keyframes slideDown {
