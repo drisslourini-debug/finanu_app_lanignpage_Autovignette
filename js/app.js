@@ -85,24 +85,31 @@ if (isTouchDevice() && visualCard) {
     visualCard.style.transform = 'scale(1)';
 }
 
-// ===== DOM Elements =====
-const heroSection = document.getElementById('heroSection');
-const quizSection = document.getElementById('quizSection');
-const resultsSection = document.getElementById('resultsSection');
-const notEligibleSection = document.getElementById('notEligibleSection');
-const liveProofBar = document.getElementById('liveProofBar');
-const progressFill = document.getElementById('progressFill');
-const currentStepSpan = document.getElementById('currentStep');
-const nextBtn = document.getElementById('nextBtn');
-const backBtn = document.getElementById('backBtn');
-const mobileStickyCta = document.getElementById('mobileStickyCta');
+// ===== DOM Elements (initialized after DOM loads) =====
+let heroSection, quizSection, resultsSection, notEligibleSection;
+let liveProofBar, progressFill, currentStepSpan;
+let nextBtn, backBtn, mobileStickyCta;
 
 // ===== INITIALIZE EVENT LISTENERS =====
 document.addEventListener('DOMContentLoaded', function() {
+    // Get DOM elements after page loads
+    heroSection = document.getElementById('heroSection');
+    quizSection = document.getElementById('quizSection');
+    resultsSection = document.getElementById('resultsSection');
+    notEligibleSection = document.getElementById('notEligibleSection');
+    liveProofBar = document.getElementById('liveProofBar');
+    progressFill = document.getElementById('progressFill');
+    currentStepSpan = document.getElementById('currentStep');
+    nextBtn = document.getElementById('nextBtn');
+    backBtn = document.getElementById('backBtn');
+    mobileStickyCta = document.getElementById('mobileStickyCta');
+    
     // Initialize back button to be hidden initially
     if (backBtn) {
         backBtn.style.display = 'none';
     }
+    
+    console.log('DOM loaded, initializing event listeners...');
     initializeEventListeners();
 });
 
@@ -111,9 +118,24 @@ function initializeEventListeners() {
     const navStartQuizBtn = document.getElementById('navStartQuizBtn');
     const heroCtaBtn = document.getElementById('heroCtaBtn');
     
-    if (navStartQuizBtn) navStartQuizBtn.addEventListener('click', startQuiz);
-    if (heroCtaBtn) heroCtaBtn.addEventListener('click', startQuiz);
-    if (mobileStickyCta) mobileStickyCta.addEventListener('click', startQuiz);
+    console.log('Initializing buttons:', { 
+        navStartQuizBtn: !!navStartQuizBtn, 
+        heroCtaBtn: !!heroCtaBtn,
+        mobileStickyCta: !!mobileStickyCta 
+    });
+    
+    if (navStartQuizBtn) {
+        navStartQuizBtn.addEventListener('click', startQuiz);
+        console.log('navStartQuizBtn listener added');
+    }
+    if (heroCtaBtn) {
+        heroCtaBtn.addEventListener('click', startQuiz);
+        console.log('heroCtaBtn listener added');
+    }
+    if (mobileStickyCta) {
+        mobileStickyCta.addEventListener('click', startQuiz);
+        console.log('mobileStickyCta listener added');
+    }
     
     // Quiz Navigation
     if (nextBtn) nextBtn.addEventListener('click', nextQuestion);
@@ -161,6 +183,8 @@ function initializeEventListeners() {
 
 // ===== Start Quiz =====
 function startQuiz() {
+    console.log('startQuiz() called');
+    
     // Hide all sections except quiz
     if (heroSection) heroSection.style.display = 'none';
     document.querySelectorAll('section').forEach(section => {
