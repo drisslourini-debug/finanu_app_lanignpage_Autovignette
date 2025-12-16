@@ -160,31 +160,24 @@ function initializeEventListeners() {
 
 // ===== Start Quiz =====
 function startQuiz() {
-    heroSection.style.display = 'none';
+    // Hide all sections except quiz
+    if (heroSection) heroSection.style.display = 'none';
+    document.querySelectorAll('section').forEach(section => {
+        if (section.id !== 'quizSection') {
+            section.classList.add('hidden');
+        }
+    });
+    
     showElement('quizSection');
-    showElement('liveProofBar');
-    showElements('activityFeed');
     hideElement('mobileStickyCta');
     
     startLiveCounter();
     startActivityFeed();
     
-    // Smooth scroll with mobile adjustment
+    // Smooth scroll to top with mobile adjustment
     const scrollDelay = isMobile() ? 300 : 100;
     setTimeout(() => {
-        const quizContainer = document.querySelector('.quiz-container');
-        if (quizContainer) {
-            const headerOffset = 80;
-            const elementPosition = quizContainer.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }, scrollDelay);
     
     // Focus first question on mobile
@@ -392,19 +385,15 @@ function submitQuiz() {
 
 // ===== Show Results =====
 function showResults() {
-    quizSection.style.display = 'none';
-    resultsSection.style.display = 'flex';
+    // Hide all sections except results
+    document.querySelectorAll('section').forEach(section => {
+        if (section.id !== 'resultsSection') {
+            section.classList.add('hidden');
+        }
+    });
     
-    // Initially hide OS selection and app download sections until email is captured
-    const osSelectionSection = document.getElementById('osSelectionSection');
-    if (osSelectionSection) {
-        osSelectionSection.style.display = 'none';
-    }
-    
-    const appDownloadSection = document.getElementById('appDownloadSection');
-    if (appDownloadSection) {
-        appDownloadSection.style.display = 'none';
-    }
+    showElement('resultsSection');
+    hideElement('mobileStickyCta');
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -427,8 +416,15 @@ function showResults() {
 
 // ===== Show Not Eligible =====
 function showNotEligible() {
-    quizSection.style.display = 'none';
-    notEligibleSection.style.display = 'flex';
+    // Hide all sections except notEligibleSection
+    document.querySelectorAll('section').forEach(section => {
+        if (section.id !== 'notEligibleSection') {
+            section.classList.add('hidden');
+        }
+    });
+    
+    showElement('notEligibleSection');
+    hideElement('mobileStickyCta');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -483,11 +479,11 @@ function goBackToHome() {
     };
 
     // Hide all sections except hero
-    hideElement('quizSection');
-    hideElement('resultsSection');
-    hideElement('notEligibleSection');
-    hideElement('liveProofBar');
-    hideElement('activityFeed');
+    document.querySelectorAll('section').forEach(section => {
+        if (section.id !== 'heroSection') {
+            section.classList.add('hidden');
+        }
+    });
     
     // Show hero section
     if (heroSection) {
