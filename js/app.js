@@ -400,9 +400,32 @@ function showResults() {
     hideElement('activityFeed');
     hideElement('mobileStickyCta');
     
-    // Initialize step-action visibility - only Step 2 (email) is shown initially
-    showElement('emailFormInline');      // Step 2: Show email form
-    hideElement('osSelectionInline');    // Step 3: Hide OS selection (shown after email)
+    // Initialize checklist state: only Step 2 (email) active/expanded
+    const emailStep = document.getElementById('emailCapturedStep');
+    const appDownloadStep = document.getElementById('appDownloadStep');
+    const registerStep = document.getElementById('registerStep');
+    const uploadStep = document.getElementById('uploadStep');
+
+    if (emailStep) {
+        emailStep.classList.remove('completed');
+        emailStep.classList.add('pending', 'active');
+    }
+    if (appDownloadStep) {
+        appDownloadStep.classList.remove('active', 'completed');
+        appDownloadStep.classList.add('pending');
+    }
+    if (registerStep) {
+        registerStep.classList.remove('active', 'completed');
+        registerStep.classList.add('pending');
+    }
+    if (uploadStep) {
+        uploadStep.classList.remove('active', 'completed');
+        uploadStep.classList.add('pending');
+    }
+
+    // Step actions visibility
+    showElement('emailFormInline');      // Step 2 form open
+    hideElement('osSelectionInline');    // Step 3 closed until email done
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -681,6 +704,7 @@ function updateChecklistWithEmail(email) {
     if (emailStep) {
         emailStep.classList.remove('pending');
         emailStep.classList.add('completed');
+        emailStep.classList.remove('active');
         
         const icon = emailStep.querySelector('.check-icon');
         if (icon) icon.textContent = '✓';
@@ -722,7 +746,7 @@ function selectOS(os) {
     // Update app download step to completed
     const appDownloadStep = document.getElementById('appDownloadStep');
     if (appDownloadStep) {
-        appDownloadStep.classList.remove('active');
+        appDownloadStep.classList.remove('pending', 'active');
         appDownloadStep.classList.add('completed');
         
         const icon = appDownloadStep.querySelector('.check-icon');
@@ -743,7 +767,7 @@ function selectOS(os) {
     // Activate register step
     const registerStep = document.getElementById('registerStep');
     if (registerStep) {
-        registerStep.classList.remove('pending');
+        registerStep.classList.remove('pending', 'completed');
         registerStep.classList.add('active');
         
         const icon = registerStep.querySelector('.check-icon');
@@ -788,41 +812,9 @@ function selectOS(os) {
         }, 200);
     }
     
-    // Generate appropriate app store button (old section - kept for compatibility)
-    let buttonHTML = '';
-    if (os === 'ios') {
-        buttonHTML = `
-            <a href="https://apps.apple.com/ch/app/finanu-schweiz/id6738845629" target="_blank" class="app-button-large apple">
-                <img src="assets/app-badges/apple-app-store.svg" alt="Download on Apple App Store">
-            </a>
-        `;
-    } else if (os === 'android') {
-        buttonHTML = `
-            <a href="https://play.google.com/store/apps/details?id=app.ditcompany.finanu&pcampaignid=web_share&pli=1" target="_blank" class="app-button-large google">
-                <img src="assets/app-badges/google-play-store.svg" alt="Get it on Google Play">
-            </a>
-        `;
-    }
-    
-    appDownloadButtons.innerHTML = buttonHTML;
-    
-    // Show app download section
-    appDownloadSection.style.display = 'block';
-    appDownloadSection.style.opacity = '0';
-    setTimeout(() => {
-        appDownloadSection.style.transition = 'opacity 0.5s ease';
-        appDownloadSection.style.opacity = '1';
-        appDownloadSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 100);
-    
-    // Hide OS selection section
-    const osSelectionSection = document.getElementById('osSelectionSection');
-    if (osSelectionSection) {
-        setTimeout(() => {
-            osSelectionSection.style.display = 'none';
-        }, 500);
-    }
 }
+
+// Note: Old app download section code removed - now using inline checklist flow
 
 // ===== Email Capture & Supabase Integration =====
 async function handleEmailCapture(event) {
@@ -843,7 +835,6 @@ async function handleEmailCapture(event) {
     const userEmail = emailInput.value.trim();
 
     try {
-        // Stage 1: Sending
         showLoadingState('sending');
         await new Promise(resolve => setTimeout(resolve, 1000));
         

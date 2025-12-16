@@ -3579,6 +3579,15 @@ img {
         margin-top: 14px;
         border-radius: 10px;
         border: 2px dashed rgba(37, 99, 235, 0.3);
+        display: none;
+    }
+
+    .checklist-item.active .step-action {
+        display: block;
+    }
+
+    .checklist-item.completed .step-action {
+        display: none;
     }
 
     .inline-form-wrapper {
