@@ -802,27 +802,21 @@ function selectOS(os) {
         
         const status = registerStep.querySelector('.check-status');
         if (status) status.textContent = 'Jetzt';
-    }
     
-    // Generate appropriate app store link
-    let appStoreUrl = '';
-    let badgeHtml = '';
-    
-    if (os === 'ios') {
-        appStoreUrl = 'https://apps.apple.com/ch/app/finanu-schweiz/id6738845629';
-        badgeHtml = '<img src="assets/app-badges/apple-app-store.svg" alt="Im App Store laden" style="width: 180px; height: auto;">';
-    } else if (os === 'android') {
-        appStoreUrl = 'https://play.google.com/store/apps/details?id=app.ditcompany.finanu&pcampaignid=web_share&pli=1';
-        badgeHtml = '<img src="assets/app-badges/google-play-store.svg" alt="Jetzt bei Google Play" style="width: 200px; height: auto;">';
-    }
-    
-    // Update inline app download
-    const appStoreLink = document.getElementById('appStoreLink');
-    const appStoreBadge = document.getElementById('appStoreBadge');
-    
-    if (appStoreLink && appStoreBadge) {
-        appStoreLink.href = appStoreUrl;
-        appStoreBadge.innerHTML = badgeHtml;
+    // Activate register step
+    const registerStep = document.getElementById('registerStep');
+    if (registerStep) {
+        registerStep.classList.remove('pending', 'completed');
+        registerStep.classList.add('active');
+        
+        const icon = registerStep.querySelector('.check-icon');
+        if (icon) {
+            icon.textContent = '4';
+            icon.classList.add('pulse-icon');
+        }
+        
+        const status = registerStep.querySelector('.check-status');
+        if (status) status.textContent = 'Jetzt';
     }
     
     // Show inline app download
