@@ -83,7 +83,7 @@
         </div>
 
         <!-- Quiz Section -->
-        <section class="quiz-section" id="quizSection" class="hidden" role="main" aria-labelledby="quizTitle">
+        <section class="quiz-section hidden" id="quizSection" role="main" aria-labelledby="quizTitle">
             <div class="section-header">
                 <div class="section-badge" aria-label="Status: Berechtigungsprüfung läuft">Eligibility Check</div>
                 <h2 id="quizTitle">Prüfe deine Berechtigung</h2>
@@ -151,14 +151,14 @@
 
                 <!-- Navigation Buttons -->
                 <div class="quiz-nav">
-                    <button class="btn btn-secondary" id="backBtn" class="hidden">← Zurück</button>
+                    <button class="btn btn-secondary" id="backBtn">← Zurück</button>
                     <button class="btn btn-primary" id="nextBtn" disabled>Weiter →</button>
                 </div>
             </div>
         </section>
 
         <!-- Results Section -->
-        <section class="results-section" id="resultsSection" class="hidden" role="main" aria-labelledby="resultsTitle">
+        <section class="results-section hidden" id="resultsSection" role="main" aria-labelledby="resultsTitle">
             <div class="results-container">
                 <div class="results-card success animate-scale-in">
                     <div class="confetti"></div>
@@ -281,14 +281,14 @@
                             <span>Deine Reservierung ist <strong>24 Stunden</strong> gültig</span>
                         </div>
                     </div>
-
-
+                    <!-- Back to Home Button -->
+                    <button class="btn btn-secondary" id="backToHomeBtn" style="margin-top: 24px; width: 100%;">← Zurück zur Startseite</button>
                 </div>
             </div>
         </section>
 
         <!-- Not Eligible Section -->
-        <section class="not-eligible-section" id="notEligibleSection" class="hidden" role="main" aria-labelledby="notEligibleTitle">
+        <section class="not-eligible-section hidden" id="notEligibleSection" role="main" aria-labelledby="notEligibleTitle">
             <div class="not-eligible-container">
                 <div class="not-eligible-card">
                     <div class="not-eligible-icon">⚠️</div>
@@ -296,6 +296,7 @@
                     <p>Basierend auf deinen Angaben qualifizierst du dich momentan nicht für unser Gratis-Vignetten-Programm.</p>
                     <p class="note">Dieses Angebot gilt nur für in der Schweiz zugelassene Fahrzeuge.</p>
                     <button class="btn btn-secondary" id="retryQuizBtn">Nochmal versuchen</button>
+                    <button class="btn btn-secondary" id="backToHomeBtn2" style="margin-top: 12px;">← Zurück zur Startseite</button>
                 </div>
             </div>
         </section>

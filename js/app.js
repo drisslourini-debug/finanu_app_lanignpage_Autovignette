@@ -98,6 +98,10 @@ const mobileStickyCta = document.getElementById('mobileStickyCta');
 
 // ===== INITIALIZE EVENT LISTENERS =====
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize back button to be hidden initially
+    if (backBtn) {
+        backBtn.style.display = 'none';
+    }
     initializeEventListeners();
 });
 
@@ -135,6 +139,23 @@ function initializeEventListeners() {
     // Retry Quiz
     const retryQuizBtn = document.getElementById('retryQuizBtn');
     if (retryQuizBtn) retryQuizBtn.addEventListener('click', resetQuiz);
+    
+    // Back to Home Buttons
+    const backToHomeBtn = document.getElementById('backToHomeBtn');
+    const backToHomeBtn2 = document.getElementById('backToHomeBtn2');
+    if (backToHomeBtn) backToHomeBtn.addEventListener('click', goBackToHome);
+    if (backToHomeBtn2) backToHomeBtn2.addEventListener('click', goBackToHome);
+    
+    // Logo navigation back to home
+    const logoNav = document.querySelector('.logo-nav a');
+    if (logoNav) {
+        logoNav.addEventListener('click', function(e) {
+            if (window.scrollY > 0) {
+                e.preventDefault();
+                goBackToHome();
+            }
+        });
+    }
 }
 
 // ===== Start Quiz =====
@@ -445,6 +466,60 @@ function resetQuiz() {
     if (mobileStickyCta) {
         mobileStickyCta.classList.remove('hidden');
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== Go Back to Home =====
+function goBackToHome() {
+    // Reset quiz completely
+    quizState = {
+        currentStep: 1,
+        totalQuestions: 2,
+        answers: {
+            1: null,
+            2: null
+        },
+        eligible: false
+    };
+
+    // Hide all sections except hero
+    hideElement('quizSection');
+    hideElement('resultsSection');
+    hideElement('notEligibleSection');
+    hideElement('liveProofBar');
+    hideElement('activityFeed');
+    
+    // Show hero section
+    if (heroSection) {
+        heroSection.style.display = 'block';
+    }
+    
+    // Show mobile sticky CTA
+    if (mobileStickyCta) {
+        mobileStickyCta.classList.remove('hidden');
+    }
+    
+    // Reset UI elements
+    document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+    document.getElementById('question1').classList.add('active');
+    document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+    
+    const selectDropdown = document.getElementById('carInsuranceSelect');
+    if (selectDropdown) {
+        selectDropdown.value = '';
+    }
+    
+    if (nextBtn) {
+        nextBtn.textContent = 'Weiter →';
+        nextBtn.disabled = true;
+    }
+    if (backBtn) {
+        backBtn.style.display = 'none';
+    }
+    
+    updateProgress();
+    
+    // Scroll to top smoothly
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
