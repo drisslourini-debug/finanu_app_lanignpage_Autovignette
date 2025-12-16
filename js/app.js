@@ -118,23 +118,28 @@ function initializeEventListeners() {
     const navStartQuizBtn = document.getElementById('navStartQuizBtn');
     const heroCtaBtn = document.getElementById('heroCtaBtn');
     
-    console.log('Initializing buttons:', { 
-        navStartQuizBtn: !!navStartQuizBtn, 
-        heroCtaBtn: !!heroCtaBtn,
-        mobileStickyCta: !!mobileStickyCta 
-    });
+    console.log('=== INITIALIZING EVENT LISTENERS ===');
+    console.log('navStartQuizBtn found:', !!navStartQuizBtn);
+    console.log('heroCtaBtn found:', !!heroCtaBtn);
+    console.log('mobileStickyCta found:', !!mobileStickyCta);
     
     if (navStartQuizBtn) {
         navStartQuizBtn.addEventListener('click', startQuiz);
-        console.log('navStartQuizBtn listener added');
+        console.log('✅ navStartQuizBtn listener ADDED');
+    } else {
+        console.error('❌ navStartQuizBtn NOT FOUND in DOM');
     }
+    
     if (heroCtaBtn) {
         heroCtaBtn.addEventListener('click', startQuiz);
-        console.log('heroCtaBtn listener added');
+        console.log('✅ heroCtaBtn listener ADDED');
+    } else {
+        console.error('❌ heroCtaBtn NOT FOUND in DOM');
     }
+    
     if (mobileStickyCta) {
         mobileStickyCta.addEventListener('click', startQuiz);
-        console.log('mobileStickyCta listener added');
+        console.log('✅ mobileStickyCta listener ADDED');
     }
     
     // Quiz Navigation
@@ -183,10 +188,14 @@ function initializeEventListeners() {
 
 // ===== Start Quiz =====
 function startQuiz() {
-    console.log('startQuiz() called');
+    console.log('🚀 startQuiz() CALLED - Quiz is starting!');
+    console.trace('Call stack:');
     
     // Hide all sections except quiz
-    if (heroSection) heroSection.style.display = 'none';
+    if (heroSection) {
+        console.log('Hiding heroSection');
+        heroSection.style.display = 'none';
+    }
     document.querySelectorAll('section').forEach(section => {
         if (section.id !== 'quizSection') {
             section.classList.add('hidden');
