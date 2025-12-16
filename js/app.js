@@ -395,6 +395,10 @@ function showResults() {
     showElement('resultsSection');
     hideElement('mobileStickyCta');
     
+    // Initialize step-action visibility - only Step 2 (email) is shown initially
+    showElement('emailFormInline');      // Step 2: Show email form
+    hideElement('osSelectionInline');    // Step 3: Hide OS selection (shown after email)
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     // Get insurance name from code
