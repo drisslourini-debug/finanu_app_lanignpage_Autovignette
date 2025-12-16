@@ -1,3 +1,14 @@
+// ===== MOBILE DETECTION & OPTIMIZATION =====
+const isMobile = () => window.innerWidth < 768;
+const isSmallMobile = () => window.innerWidth < 480;
+
+// Detect if touch device
+const isTouchDevice = () => {
+    return (('ontouchstart' in window) ||
+            (navigator.maxTouchPoints > 0) ||
+            (navigator.msMaxTouchPoints > 0));
+};
+
 // ===== Quiz State Management =====
 let quizState = {
     currentStep: 1,
@@ -26,11 +37,11 @@ const recentActivities = [
 
 let activityIndex = 0;
 
-// ===== 3D Vignette Tilt Effect =====
+// ===== 3D Vignette Tilt Effect (disabled on mobile) =====
 const visualCard = document.querySelector('.visual-card');
 const heroVisual = document.querySelector('.hero-visual');
 
-if (visualCard && heroVisual) {
+if (visualCard && heroVisual && !isMobile()) {
     heroVisual.addEventListener('mousemove', function(e) {
         const rect = heroVisual.getBoundingClientRect();
         const centerX = rect.width / 2;
@@ -48,6 +59,11 @@ if (visualCard && heroVisual) {
     heroVisual.addEventListener('mouseleave', function() {
         visualCard.style.transform = 'rotateX(0deg) rotateY(0deg)';
     });
+}
+
+// Mobile-specific touch handling
+if (isTouchDevice() && visualCard) {
+    visualCard.style.transform = 'scale(1)';
 }
 
 // ===== DOM Elements =====
@@ -85,7 +101,33 @@ function startQuiz() {
         mobileStickyCta.classList.add('hidden');
     }
     
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Smooth scroll with mobile adjustment
+    const scrollDelay = isMobile() ? 300 : 100;
+    setTimeout(() => {
+        const quizContainer = document.querySelector('.quiz-container');
+        if (quizContainer) {
+            const headerOffset = 80;
+            const elementPosition = quizContainer.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }, scrollDelay);
+    
+    // Focus first question on mobile
+    if (isMobile()) {
+        setTimeout(() => {
+            const firstQuestion = document.getElementById('question1');
+            if (firstQuestion) {
+                firstQuestion.focus();
+            }
+        }, 500);
+    }
 }
 
 // ===== Select Answer =====

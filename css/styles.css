@@ -35,6 +35,21 @@ body {
     background-color: var(--bg-light);
     color: var(--text-dark);
     line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
+}
+
+input, button, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 .container {
@@ -2396,18 +2411,38 @@ body {
 }
 
 /* ===== Responsive Design ===== */
+/* ===== TABLET RESPONSIVE (768px and below) ===== */
 @media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+
+    /* ===== NAVBAR TABLET ===== */
+    .navbar {
+        padding: 16px 0;
+    }
+
+    .nav-container {
+        padding: 0 16px;
+        gap: 12px;
+    }
+
+    .logo-nav-img {
+        height: 35px;
+    }
+
     .nav-actions {
         gap: 10px;
+        flex-wrap: wrap;
     }
 
     .btn-outline {
-        padding: 8px 14px;
+        padding: 9px 16px;
         font-size: 0.85rem;
     }
 
     .navbar .btn-primary {
-        padding: 8px 14px;
+        padding: 9px 16px;
         font-size: 0.85rem;
     }
 
@@ -2417,24 +2452,75 @@ body {
     }
 
     .mobile-cta {
-        display: inline-flex;
+        display: inline-flex !important;
     }
 
+    /* ===== HERO SECTION TABLET ===== */
     .hero {
-        padding: 60px 20px 80px;
+        padding: 80px 20px 100px;
+        background: linear-gradient(135deg, #E3F2FD 0%, #FFFFFF 100%);
     }
 
     .hero-wrapper {
         grid-template-columns: 1fr;
         gap: 50px;
+        padding: 0 10px;
+    }
+
+    .hero-badge {
+        font-size: 0.85rem;
+        padding: 9px 18px;
+        margin-bottom: 20px;
     }
 
     .hero-title {
         font-size: 2.5rem;
+        line-height: 1.2;
+        margin-bottom: 20px;
     }
 
     .hero-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
+        margin-bottom: 16px;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .cta-group {
+        margin-bottom: 24px;
+    }
+
+    .hero-subtext {
+        gap: 16px;
+        flex-direction: column;
+    }
+
+    .check-item {
+        font-size: 0.9rem;
+        width: 100%;
+    }
+
+    .hero-disclaimer {
+        font-size: 0.85rem;
+        margin-top: 12px;
+    }
+
+    .hero-visual {
+        perspective: 1000px;
+        min-height: 280px;
+    }
+
+    .visual-card {
+        width: 100% !important;
+        max-width: 100%;
+    }
+
+    .visual-image {
+        width: 100%;
+        height: auto;
     }
 
     .trust-indicators {
@@ -2442,81 +2528,181 @@ body {
         gap: 15px;
     }
 
+    .trust-bar {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 12px;
+    }
+
+    /* ===== SECTION HEADERS TABLET ===== */
+    .section-header {
+        padding: 30px 0;
+    }
+
     .section-header h2 {
         font-size: 2rem;
+        margin-bottom: 15px;
     }
 
-    .quiz-container {
-        padding: 40px 30px;
-    }
-
-    .question-title {
-        font-size: 1.4rem;
-        gap: 12px;
-    }
-
-    .question-icon {
-        width: 30px;
-        height: 30px;
-    }
-
-    .option-btn {
-        padding: 18px 20px;
+    .section-header p {
         font-size: 1rem;
     }
 
-    .results-card {
-        padding: 40px 30px;
+    /* ===== QUIZ SECTION TABLET ===== */
+    .quiz-section {
+        padding: 50px 20px !important;
     }
 
-    .results-title {
-        font-size: 2rem;
+    .quiz-container {
+        padding: 30px 20px;
+        max-width: 100%;
     }
 
-    .results-message {
-        font-size: 1.1rem;
+    .progress-wrapper {
+        margin-bottom: 30px;
     }
 
-    .savings-amount {
-        font-size: 2.5rem;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
+    .progress-text {
+        font-size: 0.9rem;
         gap: 20px;
     }
 
-    /* Live Checklist Mobile */
+    .question {
+        padding: 20px 0;
+    }
+
+    .question-title {
+        font-size: 1.3rem;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .question-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .option-btn {
+        padding: 16px 18px;
+        font-size: 0.95rem;
+        gap: 12px;
+    }
+
+    .option-icon {
+        font-size: 1.1rem;
+        min-width: 24px;
+    }
+
+    .select-dropdown {
+        padding: 14px 12px;
+        font-size: 0.95rem;
+        width: 100%;
+        min-height: 48px;
+    }
+
+    .quiz-nav {
+        gap: 12px;
+        margin-top: 30px;
+    }
+
+    .quiz-nav .btn {
+        flex: 1;
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+
+    /* ===== RESULTS SECTION TABLET ===== */
+    .results-section {
+        padding: 40px 20px;
+    }
+
+    .results-container {
+        padding: 20px;
+    }
+
+    .results-card {
+        padding: 30px 24px;
+    }
+
+    .results-icon-wrapper {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 20px;
+    }
+
+    .results-icon {
+        font-size: 3.5rem;
+    }
+
+    .results-title {
+        font-size: 1.8rem;
+        margin-bottom: 16px;
+    }
+
+    .results-message {
+        font-size: 1rem;
+        margin-bottom: 24px;
+    }
+
+    .savings-highlight {
+        padding: 20px;
+        margin: 24px 0;
+    }
+
+    .savings-amount {
+        font-size: 2.2rem;
+    }
+
+    .savings-label {
+        font-size: 0.95rem;
+    }
+
+    /* ===== CHECKLIST TABLET ===== */
     .live-checklist {
         padding: 24px 20px;
     }
 
     .checklist-title {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .checklist-subtitle {
+        font-size: 0.9rem;
     }
 
     .checklist-item {
-        padding: 14px 16px;
+        padding: 14px 14px;
         gap: 12px;
+        flex-wrap: wrap;
     }
 
     .check-icon {
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
-    }
-
-    .check-content strong {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
         font-size: 0.95rem;
     }
 
+    .check-content {
+        flex: 1;
+        min-width: 150px;
+    }
+
+    .check-content strong {
+        font-size: 0.9rem;
+        display: block;
+    }
+
     .check-content span {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+        display: block;
+        margin-top: 3px;
     }
 
     .check-status {
         padding: 4px 10px;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
 
     .checklist-timer {
@@ -2524,17 +2710,195 @@ body {
         font-size: 0.85rem;
     }
 
-    /* OS Selection Mobile */
+    /* ===== INLINE FORMS TABLET ===== */
+    .step-action {
+        padding: 18px;
+        margin-top: 14px;
+    }
+
+    .inline-form-wrapper {
+        gap: 10px;
+    }
+
+    .inline-input {
+        padding: 12px 14px;
+        font-size: 1rem;
+        min-height: 48px;
+    }
+
+    .btn-inline {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        min-height: 48px;
+    }
+
+    .inline-os-buttons {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .os-button-compact {
+        padding: 16px;
+    }
+
+    .os-icon-compact {
+        font-size: 30px;
+    }
+
+    .os-label {
+        font-size: 0.85rem;
+    }
+
+    /* ===== NOT ELIGIBLE TABLET ===== */
+    .not-eligible-section {
+        padding: 40px 20px;
+    }
+
+    .not-eligible-card {
+        padding: 30px;
+    }
+
+    .not-eligible-icon {
+        font-size: 3rem;
+        margin-bottom: 16px;
+    }
+
+    .not-eligible-card h2 {
+        font-size: 1.6rem;
+    }
+
+    /* ===== ROADMAP TABLET ===== */
+    .roadmap-section {
+        padding: 50px 20px;
+    }
+
+    .roadmap-timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .roadmap-step {
+        padding: 20px;
+    }
+
+    .step-circle {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .roadmap-connector {
+        height: 20px;
+    }
+
+    .step-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .step-content p {
+        font-size: 0.9rem;
+    }
+
+    /* ===== APP FEATURES TABLET ===== */
+    .app-features-section {
+        padding: 50px 20px;
+    }
+
+    .features-wrapper {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .feature-item {
+        padding: 20px;
+    }
+
+    .feature-icon-box {
+        height: 80px;
+        margin-bottom: 15px;
+    }
+
+    .feature-text h3 {
+        font-size: 1.05rem;
+    }
+
+    .feature-text p {
+        font-size: 0.9rem;
+    }
+
+    .highlights-bar {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .highlight-badge {
+        padding: 15px;
+    }
+
+    .highlight-emoji {
+        font-size: 1.5rem;
+    }
+
+    .highlight-badge strong {
+        font-size: 0.9rem;
+    }
+
+    .highlight-badge p {
+        font-size: 0.8rem;
+    }
+
+    /* ===== FOOTER TABLET ===== */
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        padding: 40px 20px;
+    }
+
+    .footer-section {
+        padding: 0;
+    }
+
+    .footer-logo-img {
+        height: 30px;
+    }
+
+    .footer-section h4 {
+        font-size: 1rem;
+        margin-bottom: 12px;
+    }
+
+    .footer-section ul {
+        font-size: 0.9rem;
+    }
+
+    /* ===== MOBILE CTA TABLET ===== */
+    .mobile-cta {
+        display: inline-flex !important;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        z-index: 900;
+        width: auto;
+        padding: 14px 20px;
+    }
+
+    .mobile-cta.hidden {
+        display: none !important;
+    }
+
+    /* ===== OS SELECTION TABLET ===== */
     .os-selection-section {
         padding: 24px 20px;
     }
 
     .os-selection-title {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     .os-selection-subtitle {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
     .os-buttons {
@@ -2543,11 +2907,7 @@ body {
     }
 
     .os-button {
-        padding: 20px 18px;
-    }
-
-    .os-icon {
-        width: 52px;
+        padding: 18px 16px;
         height: 52px;
     }
 
@@ -2734,57 +3094,852 @@ body {
     }
 }
 
+/* ===== MOBILE RESPONSIVE (480px and below) ===== */
 @media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
+    body {
+        -webkit-text-size-adjust: 100%;
+    }
+
+    /* ===== NAVBAR MOBILE ===== */
+    .navbar {
+        padding: 12px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .nav-container {
+        padding: 0 12px;
+        flex-wrap: wrap;
+    }
+
+    .logo-nav-img {
+        height: 30px;
+    }
+
     .nav-actions {
         flex-direction: column;
         gap: 8px;
         align-items: stretch;
+        width: 100%;
+        order: 3;
     }
 
     .nav-actions .btn-outline,
     .nav-actions .btn-primary {
         width: 100%;
-        padding: 10px 16px;
-        font-size: 0.9rem;
+        padding: 11px 14px;
+        font-size: 0.85rem;
+        min-height: 44px;
+        border-radius: 6px;
+    }
+
+    /* ===== HERO SECTION MOBILE ===== */
+    .hero {
+        padding: 50px 16px 70px;
+    }
+
+    .hero::before {
+        width: 400px;
+        height: 400px;
+        right: -15%;
+        top: -30%;
+    }
+
+    .hero-wrapper {
+        gap: 35px;
+        padding: 0;
+    }
+
+    .hero-badge {
+        font-size: 0.75rem;
+        padding: 8px 14px;
+        margin-bottom: 16px;
     }
 
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
+        line-height: 1.25;
+        margin-bottom: 16px;
+        letter-spacing: -0.3px;
     }
 
     .hero-subtitle {
         font-size: 1rem;
+        margin-bottom: 12px;
+        line-height: 1.4;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    .cta-group {
+        margin-bottom: 16px;
     }
 
     .btn-lg {
-        padding: 12px 24px;
-        font-size: 1rem;
-    }
-
-    .roadmap-goal .step-content h3 {
-        font-size: 1.2rem;
-    }
-
-    .goal-benefits {
-        flex-direction: column;
-    }
-
-    .benefit-tag {
+        padding: 13px 20px;
+        font-size: 0.95rem;
         width: 100%;
-        justify-content: center;
+        min-height: 48px;
+        border-radius: 8px;
     }
 
-    .nav-links {
-        gap: 15px;
+    .btn-lg svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .hero-subtext {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 12px;
+    }
+
+    .check-item {
         font-size: 0.85rem;
+        width: 100%;
+    }
+
+    .hero-disclaimer {
+        font-size: 0.8rem;
+        margin-top: 10px;
+        line-height: 1.4;
+    }
+
+    .hero-visual {
+        min-height: 240px;
+        margin: 0 -16px;
+        width: calc(100% + 32px);
+    }
+
+    .visual-card {
+        max-width: 280px !important;
+    }
+
+    .trust-indicators {
+        gap: 12px;
+        flex-direction: column;
+        padding-top: 16px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .trust-item {
+        gap: 8px;
+    }
+
+    .trust-icon {
+        font-size: 1.3rem;
+    }
+
+    .trust-text {
+        font-size: 0.85rem;
+    }
+
+    .trust-bar {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 12px;
+        margin-top: 16px;
+    }
+
+    .trust-badge {
+        font-size: 0.85rem;
+        gap: 6px;
+    }
+
+    /* ===== SECTION HEADERS MOBILE ===== */
+    .section-header {
+        padding: 25px 0;
+    }
+
+    .section-badge {
+        font-size: 0.75rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+        line-height: 1.3;
+    }
+
+    .section-header p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    /* ===== QUIZ SECTION MOBILE ===== */
+    .quiz-section {
+        padding: 30px 16px !important;
+    }
+
+    .quiz-container {
+        padding: 20px 16px;
+        border-radius: 12px;
+    }
+
+    .progress-wrapper {
+        margin-bottom: 24px;
+    }
+
+    .progress-bar {
+        height: 6px;
+        border-radius: 3px;
+    }
+
+    .progress-text {
+        font-size: 0.85rem;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+
+    .time-estimate {
+        font-size: 0.8rem;
+    }
+
+    .step-indicator {
+        font-size: 0.8rem;
+    }
+
+    .instant-feedback {
+        padding: 12px;
+        margin-bottom: 16px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+    }
+
+    .question {
+        padding: 16px 0;
     }
 
     .question-title {
         font-size: 1.1rem;
+        gap: 10px;
+        margin-bottom: 16px;
+        line-height: 1.3;
+    }
+
+    .question-icon {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+    }
+
+    .question-options {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .option-btn {
+        padding: 14px 14px;
+        font-size: 0.9rem;
+        gap: 10px;
+        min-height: 56px;
+        text-align: left;
+    }
+
+    .option-icon {
+        font-size: 1rem;
+        min-width: 20px;
+    }
+
+    .select-dropdown {
+        padding: 13px 12px;
+        font-size: 0.9rem;
+        width: 100%;
+        min-height: 48px;
+        border-radius: 8px;
+    }
+
+    .quiz-nav {
+        gap: 10px;
+        flex-direction: column;
+        margin-top: 24px;
+    }
+
+    .quiz-nav .btn {
+        width: 100%;
+        padding: 13px 14px;
+        font-size: 0.9rem;
+        min-height: 48px;
+    }
+
+    #backBtn {
+        order: 2;
+    }
+
+    #nextBtn {
+        order: 1;
+    }
+
+    /* ===== RESULTS SECTION MOBILE ===== */
+    .results-section {
+        padding: 30px 16px;
+    }
+
+    .results-container {
+        padding: 0;
+    }
+
+    .results-card {
+        padding: 24px 20px;
+        border-radius: 16px;
+    }
+
+    .confetti {
+        display: none;
+    }
+
+    .results-icon-wrapper {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 16px;
+    }
+
+    .results-icon {
+        font-size: 3rem;
+    }
+
+    .success-ring {
+        display: none;
     }
 
     .results-title {
         font-size: 1.4rem;
+        margin-bottom: 12px;
+        line-height: 1.3;
+    }
+
+    .results-message {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+
+    /* ===== SAVINGS HIGHLIGHT MOBILE ===== */
+    .savings-highlight {
+        padding: 16px;
+        margin: 20px 0;
+        border-radius: 12px;
+    }
+
+    .savings-amount {
+        font-size: 2rem;
+        margin-bottom: 6px;
+    }
+
+    .savings-label {
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+    }
+
+    .savings-sublabel {
+        font-size: 0.8rem;
+    }
+
+    /* ===== LIVE CHECKLIST MOBILE ===== */
+    .live-checklist {
+        padding: 20px 16px;
+        border-radius: 12px;
+        margin-top: 20px;
+    }
+
+    .checklist-title {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+
+    .checklist-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 16px;
+    }
+
+    .checklist-items {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .checklist-item {
+        padding: 12px 12px;
+        gap: 10px;
+        border-radius: 10px;
+        align-items: flex-start;
+    }
+
+    .check-icon {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .check-content {
+        flex: 1;
+    }
+
+    .check-content strong {
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 3px;
+    }
+
+    .check-content span {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+
+    .email-match-hint {
+        display: block;
+        font-size: 0.8rem;
+    }
+
+    .check-status {
+        padding: 3px 8px;
+        font-size: 0.7rem;
+        border-radius: 4px;
+        min-width: 50px;
+        text-align: center;
+    }
+
+    /* ===== INLINE FORMS MOBILE ===== */
+    .step-action {
+        padding: 14px;
+        margin-top: 12px;
+        border-radius: 10px;
+        border: 2px dashed rgba(37, 99, 235, 0.3);
+    }
+
+    .inline-form-wrapper {
+        gap: 10px;
+    }
+
+    .inline-input {
+        padding: 12px 12px;
+        font-size: 16px;
+        width: 100%;
+        min-height: 48px;
+        border-radius: 8px;
+        border: 2px solid rgba(37, 99, 235, 0.2);
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    .inline-input:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .inline-input::placeholder {
+        color: #9ca3af;
+    }
+
+    .btn-inline {
+        padding: 12px 18px;
+        font-size: 0.9rem;
+        min-height: 48px;
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .inline-disclaimer {
+        font-size: 0.75rem;
+        margin: 8px 0 0 0;
+    }
+
+    /* ===== OS SELECTION MOBILE ===== */
+    .inline-os-buttons {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .os-button-compact {
+        padding: 14px;
+        border-radius: 10px;
+        gap: 8px;
+    }
+
+    .os-icon-compact {
+        font-size: 28px;
+    }
+
+    .os-label {
+        font-size: 0.85rem;
+    }
+
+    /* ===== APP DOWNLOAD MOBILE ===== */
+    .btn-app-download {
+        width: 100%;
+    }
+
+    .btn-app-download img {
+        width: 160px;
+        height: auto;
+    }
+
+    /* ===== CHECKLIST TIMER MOBILE ===== */
+    .checklist-timer {
+        padding: 10px;
+        font-size: 0.8rem;
+        border-radius: 8px;
+        margin-top: 12px;
+    }
+
+    /* ===== NOT ELIGIBLE MOBILE ===== */
+    .not-eligible-section {
+        padding: 30px 16px;
+    }
+
+    .not-eligible-container {
+        padding: 0;
+    }
+
+    .not-eligible-card {
+        padding: 24px 20px;
+        border-radius: 12px;
+    }
+
+    .not-eligible-icon {
+        font-size: 2.8rem;
+        margin-bottom: 14px;
+    }
+
+    .not-eligible-card h2 {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+
+    .not-eligible-card p {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    .note {
+        font-size: 0.85rem !important;
+    }
+
+    /* ===== ROADMAP SECTION MOBILE ===== */
+    .roadmap-section {
+        padding: 40px 16px;
+    }
+
+    .roadmap-timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .roadmap-step {
+        padding: 18px 16px;
+        border-radius: 10px;
+    }
+
+    .step-circle {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+        min-width: 36px;
+    }
+
+    .roadmap-connector {
+        height: 16px;
+        margin: 0;
+    }
+
+    .step-content h3 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    .step-content p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .goal-benefits {
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .benefit-tag {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+        width: auto;
+        justify-content: center;
+    }
+
+    /* ===== APP FEATURES SECTION MOBILE ===== */
+    .app-features-section {
+        padding: 40px 16px;
+    }
+
+    .features-wrapper {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .feature-item {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .feature-icon-box {
+        height: 70px;
+        margin-bottom: 12px;
+    }
+
+    .feature-text h3 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    .feature-text p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    /* ===== HIGHLIGHTS BAR MOBILE ===== */
+    .highlights-bar {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .highlight-badge {
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .highlight-emoji {
+        font-size: 1.4rem;
+    }
+
+    .highlight-badge strong {
+        font-size: 0.85rem;
+        display: block;
+        margin-bottom: 3px;
+    }
+
+    .highlight-badge p {
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+
+    /* ===== APP CTA SECTION MOBILE ===== */
+    .app-cta {
+        padding: 24px 16px;
+        text-align: center;
+    }
+
+    .app-cta h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .app-cta p {
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+    }
+
+    .app-download-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .app-button {
+        width: 100%;
+    }
+
+    .app-button img {
+        width: 100%;
+        height: auto;
+        max-width: 220px;
+    }
+
+    /* ===== WAVE DIVIDER MOBILE ===== */
+    .wave-divider {
+        height: 60px;
+        margin: 30px 0;
+    }
+
+    .wave-divider svg {
+        height: 100%;
+    }
+
+    /* ===== FOOTER MOBILE ===== */
+    .footer {
+        padding: 30px 0 20px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 30px 16px;
+    }
+
+    .footer-logo {
+        margin-bottom: 12px;
+    }
+
+    .footer-logo-img {
+        height: 28px;
+    }
+
+    .footer-description {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .footer-section h4 {
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .footer-section ul {
+        font-size: 0.85rem;
+        gap: 8px;
+    }
+
+    .footer-section a {
+        line-height: 1.6;
+    }
+
+    .footer-socials {
+        gap: 10px;
+    }
+
+    .social-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .footer-bottom {
+        padding: 20px 16px;
+        font-size: 0.8rem;
+    }
+
+    /* ===== MOBILE STICKY CTA ===== */
+    .mobile-cta {
+        display: inline-flex !important;
+        position: fixed;
+        bottom: 16px;
+        left: 16px;
+        right: 16px;
+        z-index: 900;
+        width: auto;
+        padding: 12px 18px;
+        min-height: 48px;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .mobile-cta.hidden {
+        display: none !important;
+    }
+
+    /* ===== LIVE PROOF BAR MOBILE ===== */
+    .live-proof-bar {
+        padding: 12px 16px !important;
+    }
+
+    .live-indicator {
+        font-size: 0.85rem;
+        gap: 8px;
+    }
+
+    .live-text {
+        line-height: 1.4;
+    }
+
+    .live-dot {
+        width: 8px;
+        height: 8px;
+        min-width: 8px;
+    }
+
+    /* ===== ACTIVITY FEED MOBILE ===== */
+    .activity-feed {
+        padding: 12px 0;
+        max-height: 150px;
+    }
+
+    .activity-item {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+    }
+
+    .activity-item strong {
+        font-size: 0.85rem;
+    }
+
+    /* ===== ANIMATIONS MOBILE ===== */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+}
+
+/* ===== EXTRA SMALL (320px and below) ===== */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .btn-lg {
+        padding: 11px 16px;
+        font-size: 0.85rem;
+    }
+
+    .question-title {
+        font-size: 1rem;
+    }
+
+    .results-title {
+        font-size: 1.3rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.35rem;
+    }
+
+    .hero-badge {
+        font-size: 0.7rem;
+        padding: 6px 12px;
+    }
+
+    .mobile-cta {
+        bottom: 12px;
+        left: 12px;
+        right: 12px;
+    }
+
+    .inline-input,
+    .btn-inline,
+    .select-dropdown {
+        font-size: 16px;
     }
 }
 
