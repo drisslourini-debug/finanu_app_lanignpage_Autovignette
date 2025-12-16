@@ -2042,7 +2042,7 @@ img {
 
 /* ===== Footer ===== */
 .footer {
-    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+    background: linear-gradient(135deg, #003366 0%, #002244 100%);
     color: white;
     padding: 60px 20px 40px;
     margin-top: 80px;
@@ -2073,14 +2073,15 @@ img {
 }
 
 .footer-section a {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
     text-decoration: none;
     font-size: 0.95rem;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .footer-section a:hover {
-    color: white;
+    color: #ffffff;
+    text-decoration: underline;
 }
 
 .footer-logo-img {
