@@ -1,0 +1,27 @@
+{
+  "name": "finanu-landing-page",
+  "version": "1.0.0",
+  "description": "Finanu Landing Page - Interactive Eligibility Check Quiz für Gratis Vignette",
+  "main": "index.html",
+  "scripts": {
+    "serve": "python -m http.server 8000",
+    "dev": "python -m http.server 3000"
+  },
+  "keywords": [
+    "finanu",
+    "landing-page",
+    "quiz",
+    "vignette",
+    "switzerland"
+  ],
+  "author": "Finanu Team",
+  "license": "MIT",
+  "dependencies": {
+    "supabase": "^2.0.0"
+  },
+  "devDependencies": {
+    "html-minifier": "^4.0.0",
+    "csso-cli": "^3.0.0",
+    "uglify-js": "^3.0.0"
+  }
+}

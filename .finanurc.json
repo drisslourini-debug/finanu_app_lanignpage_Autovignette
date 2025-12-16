@@ -1,0 +1,115 @@
+{
+  "name": "Finanu Landing Page",
+  "description": "Interactive Eligibility Check Quiz for Free Vignette",
+  "license": "MIT",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drisslourini-debug/finanu_app_lanignpage_Autovignette"
+  },
+  "author": "Finanu Team",
+  "keywords": [
+    "finanu",
+    "landing-page",
+    "quiz",
+    "eligibility-check",
+    "vignette",
+    "switzerland",
+    "gamification"
+  ],
+  "features": {
+    "hero_section": "Ansprechender Call-to-Action mit Sparvorteil-Visualisierung",
+    "interactive_quiz": "3-Schritte Eligibility Check Quiz mit Progress Bar",
+    "email_capture": "Lead-Erfassung mit Email & Name",
+    "gamification": "Emojis, Animationen, Ladebalken für Engagement",
+    "responsive_design": "Mobile-First Responsive Design",
+    "supabase_ready": "Vorbereitet für Supabase Integration",
+    "webhook_ready": "Webhook-Integration für Make/Zapier Email Automation"
+  },
+  "quiz_questions": [
+    {
+      "id": 1,
+      "question": "Ist dein Fahrzeug aktuell in der Schweiz zugelassen?",
+      "type": "yes_no",
+      "required": true,
+      "disqualifies": {
+        "no": true
+      }
+    },
+    {
+      "id": 2,
+      "question": "Bei welcher Krankenversicherung bist du aktuell versichert?",
+      "type": "dropdown",
+      "options": [
+        "CSS",
+        "Helsana",
+        "Swica",
+        "Groupe Mutuel",
+        "Sanitas",
+        "Sympany",
+        "Andere"
+      ],
+      "required": true,
+      "disqualifies": {}
+    },
+    {
+      "id": 3,
+      "question": "Möchtest du jedes Jahr 40 CHF für die Autobahn-Vignette sparen?",
+      "type": "yes_no",
+      "required": true,
+      "disqualifies": {
+        "no": true
+      }
+    }
+  ],
+  "user_journey": {
+    "1": "Hero Screen",
+    "2": "Start Quiz",
+    "3": "Question 1: Auto in CH?",
+    "4": "Question 2: Insurance?",
+    "5": "Question 3: Save Money?",
+    "6": "Results / Not Eligible",
+    "7": "Email Capture",
+    "8": "Lead Saved to Supabase",
+    "9": "Webhook triggers Welcome Email",
+    "10": "App Download CTA"
+  },
+  "branding": {
+    "primary_color": "#1E3A8A",
+    "secondary_color": "#10B981",
+    "accent_color": "#F59E0B",
+    "background_light": "#F8FAFC",
+    "text_dark": "#1F2937",
+    "text_light": "#6B7280"
+  },
+  "tech_stack": {
+    "frontend": "HTML5, CSS3, Vanilla JavaScript",
+    "backend": "Supabase (PostgreSQL)",
+    "webhooks": "Make/Zapier",
+    "analytics": "Google Analytics (optional)"
+  },
+  "setup_instructions": {
+    "local_dev": "python -m http.server 8000",
+    "vs_code": "Run Task > 'Open Live Server'",
+    "live_server": "http://localhost:8000"
+  },
+  "files": {
+    "index.html": "Main HTML structure",
+    "css/styles.css": "Styling with CSS variables",
+    "js/app.js": "Quiz logic and Supabase integration",
+    "README.md": "Project documentation",
+    "DEVELOPMENT.md": "Developer guide",
+    "package.json": "Project metadata"
+  },
+  "next_steps": [
+    "Add Finanu logo to assets/",
+    "Configure Supabase API keys",
+    "Setup Make.com webhook",
+    "Develop Admin Dashboard",
+    "Setup nurture email sequences",
+    "Configure app login integration",
+    "Add Google Analytics tracking",
+    "Performance optimization",
+    "A/B testing for quiz questions"
+  ]
+}

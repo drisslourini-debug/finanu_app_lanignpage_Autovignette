@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nie wieder für die Autobahn zahlen! Finanu schenkt dir jährlich die Vignette. Qualifiziere dich in einer Minute und spare CHF 40 pro Jahr.">
+    <meta name="keywords" content="E-Vignette, Schweiz, gratis, Finanu, Autobahnvignette, kostenlos, nie wieder zahlen">
+    <meta property="og:title" content="Nie wieder für die Autobahn zahlen - Finanu">
+    <meta property="og:description" content="Finanu schenkt dir jährlich die Vignette. Qualifiziere dich jetzt in einer Minute und spare CHF 40 pro Jahr.">
+    <meta property="og:type" content="website">
+    <title>Nie wieder für die Autobahn zahlen | Finanu</title>
+    <link rel="stylesheet" href="css/styles.css?v=12">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-nav">
+                <a href="/">
+                    <img src="assets/logo/finanu-logo.svg" alt="Finanu Logo" class="logo-nav-img">
+                </a>
+            </div>
+            <div class="nav-actions">
+                <a href="https://finanu.ch" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Finanu Webseite</a>
+                <button class="btn btn-primary btn-glow" onclick="startQuiz()">Vignette sichern</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Sticky CTA -->
+    <button class="btn btn-primary btn-lg btn-glow mobile-cta" id="mobileStickyCta" onclick="startQuiz()">
+        Vignette sichern
+    </button>
+
+    <div class="container" id="eligibility">
+        <!-- Hero Section -->
+        <section class="hero" id="heroSection">
+            <div class="hero-wrapper">
+                <div class="hero-content animate-fade-in">
+                    <div class="hero-badge pulse">� Limitiertes Angebot</div>
+                    <h1 class="hero-title">Nie wieder<br><span class="highlight-text">für die Autobahn zahlen</span></h1>
+                    <p class="hero-subtitle">Finanu schenkt dir <strong>jährlich die Vignette</strong> – solange du Kunde bist.*</p>
+                    <p class="hero-description">Qualifiziere dich in einer Minute und spare CHF 40 pro Jahr.</p>
+                    
+                    <div class="cta-group">
+                        <button class="btn btn-primary btn-lg btn-glow" onclick="startQuiz()" id="heroCtaBtn">
+                            <span>Vignette sichern</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                        <p class="hero-subtext">
+                            <span class="check-item">✓ In einer Minute qualifiziert</span>
+                            <span class="check-item">✓ 100% kostenlos</span>
+                            <span class="check-item">✓ Jedes Jahr CHF 40</span>
+                        </p>
+
+                        <p class="hero-disclaimer">*Solange du Finanu-Kunde bist und Policen aktiv hältst</p>
+                    </div>
+                </div>
+                <div class="hero-visual animate-slide-in">
+                    <div class="visual-card">
+                        <img src="assets/images/hero/evignette-2026.png" alt="E-Vignette" class="visual-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Social Proof Bar -->
+        <div class="live-proof-bar" id="liveProofBar" style="display: none;">
+            <div class="container">
+                <div class="live-indicator">
+                    <span class="live-dot"></span>
+                    <span class="live-text">Live: <strong id="liveCount">23</strong> Personen prüfen gerade ihre Berechtigung</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity Feed -->
+        <div class="activity-feed" id="activityFeed" style="display: none;">
+            <!-- Populated by JS -->
+        </div>
+
+        <!-- Quiz Section -->
+        <section class="quiz-section" id="quizSection" style="display: none;">
+            <div class="section-header">
+                <div class="section-badge">Eligibility Check</div>
+                <h2>Prüfe deine Berechtigung</h2>
+                <p>Beantworte 2 einfache Fragen und erfahre <strong>in Sekunden</strong>, ob du für die jährliche E-Vignetten-Erstattung qualifiziert bist.</p>
+            </div>
+            <div class="quiz-container">
+                <!-- Progress Bar Enhanced -->
+                <div class="progress-wrapper">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                        <div class="progress-glow"></div>
+                    </div>
+                    <p class="progress-text">
+                        <span class="time-estimate">⏱ Noch <span id="timeRemaining">1</span> Min</span>
+                        <span class="step-indicator">Schritt <span id="currentStep" class="current-step-highlight">1</span> von 2</span>
+                    </p>
+                </div>
+                
+                <!-- Instant Feedback Area -->
+                <div class="instant-feedback" id="instantFeedback" style="display: none;"></div>
+
+                <!-- Quiz Questions -->
+                <div class="quiz-content">
+                    <!-- Question 1 -->
+                    <div class="question active" id="question1" data-step="1">
+                        <h2 class="question-title">
+                            <img src="assets/images/icons/car.svg" alt="Auto Icon" class="question-icon">
+                            Ist dein Fahrzeug in der Schweiz zugelassen?
+                        </h2>
+                        <div class="question-options">
+                            <button class="option-btn" onclick="selectAnswer(1, 'yes')">
+                                <span class="option-icon">✓</span>
+                                <span>Ja, mein Auto ist in CH zugelassen</span>
+                            </button>
+                            <button class="option-btn" onclick="selectAnswer(1, 'no')">
+                                <span class="option-icon">✗</span>
+                                <span>Nein, mein Auto ist nicht in CH zugelassen</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="question" id="question2" data-step="2">
+                        <h2 class="question-title">
+                            <img src="assets/images/icons/car.svg" alt="Car Insurance Icon" class="question-icon">
+                            Wo ist dein Auto versichert?
+                        </h2>
+                        <div class="question-options">
+                            <select class="select-dropdown" id="carInsuranceSelect" onchange="selectAnswer(2, this.value)">
+                                <option value="">Bitte wählen...</option>
+                                <option value="allianz">Allianz</option>
+                                <option value="axa">AXA</option>
+                                <option value="generali">Generali</option>
+                                <option value="helvetia">Helvetia</option>
+                                <option value="zurich">Zurich</option>
+                                <option value="mobiliar">Mobiliar</option>
+                                <option value="vaudoise">Vaudoise</option>
+                                <option value="sympany">Sympany</option>
+                                <option value="other">Andere</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="quiz-nav">
+                    <button class="btn btn-secondary" id="backBtn" onclick="previousQuestion()" style="display: none;">← Zurück</button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Weiter →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <div class="results-container">
+                <div class="results-card success animate-scale-in">
+                    <div class="confetti"></div>
+                    <div class="results-icon-wrapper">
+                        <div class="results-icon pulse-success">🎉</div>
+                        <div class="success-ring"></div>
+                    </div>
+                    <h2 class="results-title">Perfekt! Du bist qualifiziert 🎉</h2>
+                    <p class="results-message">Deine <strong>CHF 40 E-Vignetten-Erstattung</strong> ist reserviert. Jetzt nur noch schnell die App holen und Policen hochladen!</p>
+                    
+                    <!-- Savings Highlight -->
+                    <div class="savings-highlight">
+                        <div class="savings-amount">CHF 40</div>
+                        <div class="savings-label">Jährliche Ersparnis</div>
+                        <div class="savings-sublabel">Das sind CHF 400+ über 10 Jahre!</div>
+                    </div>
+
+                    <!-- Live Checklist -->
+                    <div class="live-checklist">
+                        <h3 class="checklist-title">📋 Deine nächsten Schritte</h3>
+                        <p class="checklist-subtitle">Folge dieser Checkliste, um deine E-Vignette zu aktivieren:</p>
+                        
+                        <div class="checklist-items">
+                            <div class="checklist-item completed">
+                                <div class="check-icon">✓</div>
+                                <div class="check-content">
+                                    <strong>Berechtigung geprüft</strong>
+                                    <span>Du erfüllst alle Kriterien</span>
+                                </div>
+                                <div class="check-status">Erledigt</div>
+                            </div>
+                            
+                            <div class="checklist-item pending" id="emailCapturedStep">
+                                <div class="check-icon">2</div>
+                                <div class="check-content">
+                                    <strong>Email erfassen</strong>
+                                    <span id="userEmailDisplay">Gib deine Kontaktdaten ein</span>
+                                </div>
+                                <div class="check-status">Offen</div>
+                                
+                                <!-- Email Form direkt im Step -->
+                                <div class="step-action" id="emailFormInline">
+                                    <div class="inline-form-wrapper">
+                                        <input type="text" id="fullNameInline" placeholder="Vollständiger Name" class="inline-input" required>
+                                        <input type="email" id="emailAddressInline" placeholder="E-Mail Adresse" class="inline-input" required>
+                                        <button class="btn btn-primary btn-inline" onclick="handleInlineEmailCapture()">
+                                            <span>Reservierung sichern →</span>
+                                        </button>
+                                    </div>
+                                    <p class="inline-disclaimer">🔒 Deine Daten sind sicher und werden nicht an Dritte weitergegeben</p>
+                                </div>
+                            </div>
+                            
+                            <div class="checklist-item pending" id="appDownloadStep">
+                                <div class="check-icon">3</div>
+                                <div class="check-content">
+                                    <strong>App herunterladen</strong>
+                                    <span>Wähle dein Betriebssystem</span>
+                                </div>
+                                <div class="check-status">Offen</div>
+                                
+                                <!-- OS Selection direkt im Step -->
+                                <div class="step-action" id="osSelectionInline" style="display: none;">
+                                    <div class="inline-os-buttons">
+                                        <button class="os-button-compact ios-button" onclick="selectOS('ios')">
+                                            <span class="os-icon-compact">🍎</span>
+                                            <span class="os-label">iPhone / iPad</span>
+                                        </button>
+                                        <button class="os-button-compact android-button" onclick="selectOS('android')">
+                                            <span class="os-icon-compact">🤖</span>
+                                            <span class="os-label">Android</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="checklist-item pending" id="registerStep">
+                                <div class="check-icon">4</div>
+                                <div class="check-content">
+                                    <strong>In App registrieren</strong>
+                                    <span class="email-match-hint">⚠️ Wichtig: Nutze <strong id="emailForApp">dieselbe Email</strong> beim Registrieren</span>
+                                </div>
+                                <div class="check-status">Offen</div>
+                                
+                                <!-- App Download direkt im Step -->
+                                <div class="step-action" id="appDownloadInline" style="display: none;">
+                                    <a id="appStoreLink" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-app-download">
+                                        <span id="appStoreBadge"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="checklist-item pending" id="uploadStep">
+                                <div class="check-icon">5</div>
+                                <div class="check-content">
+                                    <strong>Versicherungspolice hochladen</strong>
+                                    <span>Lade deine Auto-Police in der App hoch</span>
+                                </div>
+                                <div class="check-status">Offen</div>
+                            </div>
+                            
+                            <div class="checklist-item goal" id="goalStep">
+                                <div class="check-icon">🎯</div>
+                                <div class="check-content">
+                                    <strong>E-Vignette aktiviert!</strong>
+                                    <span>CHF 40 jährlich zurück – automatisch</span>
+                                </div>
+                                <div class="check-status goal">Ziel</div>
+                            </div>
+                        </div>
+                        
+                        <div class="checklist-timer">
+                            <span class="timer-icon">⏱️</span>
+                            <span>Deine Reservierung ist <strong>24 Stunden</strong> gültig</span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Not Eligible Section -->
+        <section class="not-eligible-section" id="notEligibleSection" style="display: none;">
+            <div class="not-eligible-container">
+                <div class="not-eligible-card">
+                    <div class="not-eligible-icon">⚠️</div>
+                    <h2>Leider nicht qualifiziert</h2>
+                    <p>Basierend auf deinen Angaben qualifizierst du dich momentan nicht für unser Gratis-Vignetten-Programm.</p>
+                    <p class="note">Dieses Angebot gilt nur für in der Schweiz zugelassene Fahrzeuge.</p>
+                    <button class="btn btn-secondary" onclick="resetQuiz()">Nochmal versuchen</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Roadmap Section -->
+    <section class="roadmap-section" id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2>So holst du deine Gratis E-Vignette</h2>
+                <p>In sechs einfachen Schritten zur jährlichen Vignettenerstattung.</p>
+            </div>
+            <div class="roadmap-timeline">
+                <div class="roadmap-step">
+                    <div class="step-circle">1</div>
+                    <div class="step-content">
+                        <h3>Kurz prüfen</h3>
+                        <p>Beantworte 2 Fragen und erfahre sofort, ob du berechtigt bist.</p>
+                    </div>
+                </div>
+                <div class="roadmap-connector"></div>
+                <div class="roadmap-step">
+                    <div class="step-circle">2</div>
+                    <div class="step-content">
+                        <h3>Code reservieren</h3>
+                        <p>Wir reservieren deinen exklusiven E-Vignetten-Code für 24 Stunden.</p>
+                    </div>
+                </div>
+                <div class="roadmap-connector"></div>
+                <div class="roadmap-step">
+                    <div class="step-circle">3</div>
+                    <div class="step-content">
+                        <h3>App herunterladen</h3>
+                        <p>Lade die Finanu App kostenlos aus dem App Store oder Google Play herunter.</p>
+                    </div>
+                </div>
+                <div class="roadmap-connector"></div>
+                <div class="roadmap-step">
+                    <div class="step-circle">4</div>
+                    <div class="step-content">
+                        <h3>Registrieren</h3>
+                        <p>Erstelle dein Finanu-Konto in weniger als einer Minute.</p>
+                    </div>
+                </div>
+                <div class="roadmap-connector"></div>
+                <div class="roadmap-step">
+                    <div class="step-circle">5</div>
+                    <div class="step-content">
+                        <h3>Policen hochladen</h3>
+                        <p>Lade deine Versicherungspolice hoch und aktiviere deine Gratis E-Vignette.</p>
+                    </div>
+                </div>
+                <div class="roadmap-connector roadmap-connector-final"></div>
+                <div class="roadmap-step roadmap-goal">
+                    <div class="step-circle step-goal">🎯</div>
+                    <div class="step-content">
+                        <h3>Das Ziel – CHF 40 jährlich zurück!</h3>
+                        <p>Erhalte 40 CHF pro Jahr zurück – solange du aktiver Finanu-Kunde mit Policen in der App bist.</p>
+                        <div class="goal-benefits">
+                            <span class="benefit-tag">✓ Jährlich 40 CHF</span>
+                            <span class="benefit-tag">✓ Automatisch erneuert</span>
+                            <span class="benefit-tag">✓ CHF 400+ über 10 Jahre</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,50 L1200,120 L0,120 Z" fill="#f8f9fa"></path>
+        </svg>
+    </div>
+
+    <!-- App Features Section -->
+    <section class="app-features-section" id="app">
+        <div class="container">
+            <div class="section-header">
+                <h2>Alle Versicherungen, ein smarter Assistent</h2>
+                <p>Finanu bündelt Vergleiche, Analysen, Vertragsverfolgung und persönliche Beratung in einer App – damit du Zeit und Geld sparst.</p>
+            </div>
+
+            <!-- Feature Cards mit Bildern -->
+            <div class="features-wrapper">
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <img src="assets/images/features/compare-insurance.svg" alt="Versicherungen vergleichen">
+                    </div>
+                    <div class="feature-text">
+                        <h3>Beste Angebote finden</h3>
+                        <p>Vergleiche Tarife schnell und transparent – schließe direkt in der App ab.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <img src="assets/images/features/budget-calculator.svg" alt="Personalisierte Pläne">
+                    </div>
+                    <div class="feature-text">
+                        <h3>Pläne, die zu dir passen</h3>
+                        <p>Erhalte Vorschläge, die genau auf dein Profil zugeschnitten sind.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <img src="assets/images/features/contract-management.svg" alt="Vertragsverwaltung">
+                    </div>
+                    <div class="feature-text">
+                        <h3>Verträge im Griff</h3>
+                        <p>Alle Policen an einem Ort, mit Erinnerungen vor Ablauf.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <img src="assets/images/features/smart-analysis.svg" alt="Smarte Analyse">
+                    </div>
+                    <div class="feature-text">
+                        <h3>Smarte Analyse</h3>
+                        <p>Wir prüfen dein Portfolio laufend und schlagen Optimierungen vor.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlights Bar -->
+            <div class="highlights-bar">
+                <div class="highlight-badge">
+                    <span class="highlight-emoji">⏱️</span>
+                    <div>
+                        <strong>In Minuten bereit</strong>
+                        <p>Check, Reservierung, Upload – alles ohne Wartezeit.</p>
+                    </div>
+                </div>
+                <div class="highlight-badge">
+                    <span class="highlight-emoji">🛡️</span>
+                    <div>
+                        <strong>Datenschutz first</strong>
+                        <p>Deine Daten bleiben in sicheren Schweizer Rechenzentren.</p>
+                    </div>
+                </div>
+                <div class="highlight-badge">
+                    <span class="highlight-emoji">🤝</span>
+                    <div>
+                        <strong>Persönliche Begleitung</strong>
+                        <p>Experten unterstützen dich bei Rückfragen.</p>
+                    </div>
+                </div>
+                <div class="highlight-badge">
+                    <span class="highlight-emoji">💡</span>
+                    <div>
+                        <strong>Spartipps on top</strong>
+                        <p>Laufend Optimierungsvorschläge für deine Policen.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App CTA Section -->
+            <div class="app-cta">
+                <h3>Jetzt Finanu App holen</h3>
+                <p>Aktiviere deine E-Vignetten-Erstattung und verwalte deine Versicherungen an einem Ort.</p>
+                <div class="app-download-buttons">
+                    <a href="https://apps.apple.com/ch/app/finanu-schweiz/id6738845629" class="app-button apple-store">
+                        <img src="assets/app-badges/apple-app-store.svg" alt="Download on Apple App Store">
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=app.ditcompany.finanu&pcampaignid=web_share&pli=1" class="app-button google-play">
+                        <img src="assets/app-badges/google-play-store.svg" alt="Get it on Google Play">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="assets/logo/finanu-logo.svg" alt="Finanu Logo" class="footer-logo-img">
+                </div>
+                <p class="footer-description">Finanu unterstützt Sie als unabhängige Vergleichsplattform dabei, sich in der komplexen Welt der Versicherungen und Finanzdienste zurechtzufinden.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Dienstleistungen</h4>
+                <ul>
+                    <li><a href="https://finanu.ch" target="_blank">Krankenkasse</a></li>
+                    <li><a href="https://finanu.ch" target="_blank">Rechtschutz</a></li>
+                    <li><a href="https://finanu.ch" target="_blank">Auto & Motorrad</a></li>
+                    <li><a href="https://finanu.ch" target="_blank">Pensionsplanung</a></li>
+                    <li><a href="https://finanu.ch" target="_blank">Haus & Hypothek</a></li>
+                    <li><a href="https://finanu.ch" target="_blank">Budgetplanung</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Über uns</h4>
+                <ul>
+                    <li><a href="https://finanu.ch" target="_blank">Unsere Aufgabe</a></li>
+                    <li><a href="https://finanu.ch" target="_blank">Philosophie</a></li>
+                    <li><a href="https://finanu.ch/datenschutz" target="_blank">Datenschutz</a></li>
+                    <li><a href="https://finanu.ch/impressum" target="_blank">Impressum</a></li>
+                    <li><a href="https://finanu.ch/allgemeine-geschaftsbedingungen" target="_blank">Allgemeine Geschäftsbedingungen</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Kontaktiere uns</h4>
+                <p><a href="mailto:finanu@swissma.ch">finanu@swissma.ch</a></p>
+                <div class="footer-socials">
+                    <a href="https://facebook.com/finanu" target="_blank" class="social-icon" aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://linkedin.com/company/finanu" target="_blank" class="social-icon" aria-label="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+                    </a>
+                    <a href="https://instagram.com/finanu" target="_blank" class="social-icon" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m0 21.667C6.443 21.667 2.333 17.557 2.333 12S6.443 2.333 12 2.333s9.667 4.11 9.667 9.667-4.11 9.667-9.667 9.667m4.167-14.833c0 .92-.746 1.667-1.667 1.667s-1.667-.746-1.667-1.667.746-1.667 1.667-1.667 1.667.746 1.667 1.667m-7 0c0 2.07 1.563 3.633 3.5 3.633s3.5-1.563 3.5-3.633-1.563-3.633-3.5-3.633-3.5 1.563-3.5 3.633m6.333 7c0 1.84-1.493 3.333-3.333 3.333s-3.333-1.493-3.333-3.333 1.493-3.333 3.333-3.333 3.333 1.493 3.333 3.333"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Finanu AG. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
