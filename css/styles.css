@@ -52,6 +52,32 @@ img {
     display: block;
 }
 
+/* ===== ACCESSIBILITY UTILITIES ===== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -2223,8 +2249,20 @@ img {
     border-left: 4px solid #10b981;
 }
 
+.feedback-error {
+    background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
+    padding: 16px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border-left: 4px solid #ef4444;
+    line-height: 1.5;
+}
+
 .feedback-icon {
     font-size: 1.5rem;
+    min-width: 24px;
 }
 
 .feedback-text {
@@ -3989,8 +4027,53 @@ img {
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
+.inline-input[aria-invalid="true"] {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+.inline-input[aria-invalid="true"]:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
 .inline-input::placeholder {
     color: #9ca3af;
+}
+
+.gdpr-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
+    background: rgba(0, 51, 102, 0.03);
+    border-radius: 8px;
+    margin: 8px 0;
+}
+
+.gdpr-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.gdpr-checkbox label {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-light);
+    cursor: pointer;
+}
+
+.gdpr-checkbox a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.gdpr-checkbox a:hover {
+    text-decoration: underline;
 }
 
 .btn-inline {

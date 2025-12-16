@@ -1,3 +1,22 @@
+// ===== GLOBAL HELPER: Show/Hide Elements =====
+function showElement(elementId) {
+    const el = document.getElementById(elementId);
+    if (el) el.classList.remove('hidden');
+}
+
+function hideElement(elementId) {
+    const el = document.getElementById(elementId);
+    if (el) el.classList.add('hidden');
+}
+
+function showElements(...elementIds) {
+    elementIds.forEach(id => showElement(id));
+}
+
+function hideElements(...elementIds) {
+    elementIds.forEach(id => hideElement(id));
+}
+
 // ===== MOBILE DETECTION & OPTIMIZATION =====
 const isMobile = () => window.innerWidth < 768;
 const isSmallMobile = () => window.innerWidth < 480;
@@ -77,29 +96,57 @@ const nextBtn = document.getElementById('nextBtn');
 const backBtn = document.getElementById('backBtn');
 const mobileStickyCta = document.getElementById('mobileStickyCta');
 
+// ===== INITIALIZE EVENT LISTENERS =====
+document.addEventListener('DOMContentLoaded', function() {
+    initializeEventListeners();
+});
+
+function initializeEventListeners() {
+    // CTA Buttons
+    const navStartQuizBtn = document.getElementById('navStartQuizBtn');
+    const heroCtaBtn = document.getElementById('heroCtaBtn');
+    
+    if (navStartQuizBtn) navStartQuizBtn.addEventListener('click', startQuiz);
+    if (heroCtaBtn) heroCtaBtn.addEventListener('click', startQuiz);
+    if (mobileStickyCta) mobileStickyCta.addEventListener('click', startQuiz);
+    
+    // Quiz Navigation
+    if (nextBtn) nextBtn.addEventListener('click', nextQuestion);
+    if (backBtn) backBtn.addEventListener('click', previousQuestion);
+    
+    // Question Option Buttons
+    const q1OptionYes = document.getElementById('q1OptionYes');
+    const q1OptionNo = document.getElementById('q1OptionNo');
+    
+    if (q1OptionYes) q1OptionYes.addEventListener('click', function() { selectAnswer(1, 'yes'); });
+    if (q1OptionNo) q1OptionNo.addEventListener('click', function() { selectAnswer(1, 'no'); });
+    
+    // Email Capture Form
+    const emailCaptureBtn = document.getElementById('emailCaptureBtn');
+    if (emailCaptureBtn) emailCaptureBtn.addEventListener('click', handleInlineEmailCapture);
+    
+    // OS Selection Buttons
+    const iosButton = document.getElementById('iosButton');
+    const androidButton = document.getElementById('androidButton');
+    
+    if (iosButton) iosButton.addEventListener('click', function() { selectOS('ios'); });
+    if (androidButton) androidButton.addEventListener('click', function() { selectOS('android'); });
+    
+    // Retry Quiz
+    const retryQuizBtn = document.getElementById('retryQuizBtn');
+    if (retryQuizBtn) retryQuizBtn.addEventListener('click', resetQuiz);
+}
+
 // ===== Start Quiz =====
 function startQuiz() {
     heroSection.style.display = 'none';
-    quizSection.style.display = 'flex';
+    showElement('quizSection');
+    showElement('liveProofBar');
+    showElements('activityFeed');
+    hideElement('mobileStickyCta');
     
-    // Show live social proof bar
-    const liveProofBar = document.getElementById('liveProofBar');
-    if (liveProofBar) {
-        liveProofBar.style.display = 'block';
-        startLiveCounter();
-    }
-    
-    // Show activity feed
-    const activityFeed = document.getElementById('activityFeed');
-    if (activityFeed) {
-        activityFeed.style.display = 'block';
-        startActivityFeed();
-    }
-    
-    // Update mobile CTA
-    if (mobileStickyCta) {
-        mobileStickyCta.classList.add('hidden');
-    }
+    startLiveCounter();
+    startActivityFeed();
     
     // Smooth scroll with mobile adjustment
     const scrollDelay = isMobile() ? 300 : 100;
@@ -210,7 +257,7 @@ function showInstantFeedback(questionNumber, answer) {
 // ===== Next Question =====
 function nextQuestion() {
     if (quizState.answers[quizState.currentStep] === null) {
-        alert('Bitte beantworte die Frage, bevor du fortfährst.');
+        showFormError('Bitte beantworte die Frage, bevor du fortfährst.');
         return;
     }
 
@@ -218,8 +265,8 @@ function nextQuestion() {
     if (quizState.currentStep === 1 && quizState.answers[1] === 'no') {
         // User doesn't qualify - redirect to not eligible section
         setTimeout(() => {
-            quizSection.style.display = 'none';
-            notEligibleSection.style.display = 'flex';
+            hideElement('quizSection');
+            showElement('notEligibleSection');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 300);
         return;
@@ -403,38 +450,126 @@ function resetQuiz() {
 
 // ===== Handle Inline Email Capture =====
 function handleInlineEmailCapture() {
-    const name = document.getElementById('fullNameInline')?.value.trim();
-    const email = document.getElementById('emailAddressInline')?.value.trim();
+    const fullNameInput = document.getElementById('fullNameInline');
+    const emailInput = document.getElementById('emailAddressInline');
+    const gdprCheckbox = document.getElementById('gdprConsent');
     
-    if (!name || !email) {
-        alert('Bitte fülle alle Felder aus');
+    const name = fullNameInput?.value.trim();
+    const email = emailInput?.value.trim();
+    const gdprAccepted = gdprCheckbox?.checked;
+    
+    // Clear previous errors
+    clearFormErrors();
+    
+    // Validation
+    const errors = [];
+    
+    if (!name) {
+        errors.push('Bitte gib deinen Namen ein');
+        fullNameInput?.setAttribute('aria-invalid', 'true');
+    }
+    
+    if (!email) {
+        errors.push('Bitte gib deine E-Mail-Adresse ein');
+        emailInput?.setAttribute('aria-invalid', 'true');
+    } else {
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            errors.push('Bitte gib eine gültige E-Mail-Adresse ein');
+            emailInput?.setAttribute('aria-invalid', 'true');
+        }
+    }
+    
+    if (!gdprAccepted) {
+        errors.push('Bitte akzeptiere die Datenschutzrichtlinie');
+        gdprCheckbox?.setAttribute('aria-invalid', 'true');
+    }
+    
+    if (errors.length > 0) {
+        showFormError(errors.join('\n'));
         return;
     }
     
-    // Validate email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Bitte gib eine gültige E-Mail Adresse ein');
-        return;
-    }
+    // All validations passed
+    fullNameInput?.removeAttribute('aria-invalid');
+    emailInput?.removeAttribute('aria-invalid');
+    gdprCheckbox?.removeAttribute('aria-invalid');
     
     // Update checklist with email
     updateChecklistWithEmail(email);
     
     // Hide inline form
-    const emailFormInline = document.getElementById('emailFormInline');
-    if (emailFormInline) {
-        emailFormInline.style.display = 'none';
-    }
+    hideElement('emailFormInline');
     
     // Show OS selection inline
-    const osSelectionInline = document.getElementById('osSelectionInline');
-    if (osSelectionInline) {
-        osSelectionInline.style.display = 'block';
-    }
+    showElement('osSelectionInline');
     
-    // TODO: Send to backend (Supabase)
-    console.log('Lead captured:', { name, email });
+    // Store email for later use
+    window.capturedEmail = email;
+    window.capturedName = name;
+    
+    // Log for debugging
+    console.log('Lead captured:', { name, email, gdprAccepted });
+    
+    // Send to backend (could be Supabase, Make webhook, etc.)
+    sendLeadToBackend({ name, email, gdprAccepted });
+}
+
+function clearFormErrors() {
+    const feedbackDiv = document.getElementById('instantFeedback');
+    if (feedbackDiv) {
+        feedbackDiv.innerHTML = '';
+        hideElement('instantFeedback');
+    }
+}
+
+function showFormError(message) {
+    const feedbackDiv = document.getElementById('instantFeedback');
+    if (feedbackDiv) {
+        feedbackDiv.innerHTML = `
+            <div class="feedback-error animate-slide-in">
+                <span class="feedback-icon">✗</span>
+                <span class="feedback-text">${message.replace(/\n/g, '<br>')}</span>
+            </div>
+        `;
+        showElement('instantFeedback');
+        
+        // Scroll to error
+        setTimeout(() => {
+            feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        
+        // Auto-hide after 4 seconds
+        setTimeout(() => {
+            hideElement('instantFeedback');
+        }, 4000);
+    }
+}
+
+async function sendLeadToBackend(data) {
+    try {
+        // Example: Send to Make webhook or your backend API
+        // Uncomment and replace with your actual endpoint:
+        /*
+        const response = await fetch('YOUR_WEBHOOK_URL', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        if (!response.ok) {
+            throw new Error('Failed to send data');
+        }
+        */
+        
+        console.log('Lead sent to backend:', data);
+    } catch (error) {
+        console.error('Error sending lead:', error);
+        showFormError('Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
+    }
 }
 
 // ===== Update Checklist with Email =====
