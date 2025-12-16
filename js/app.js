@@ -811,21 +811,6 @@ function selectOS(os) {
         
         const status = registerStep.querySelector('.check-status');
         if (status) status.textContent = 'Jetzt';
-    
-    // Activate register step
-    const registerStep = document.getElementById('registerStep');
-    if (registerStep) {
-        registerStep.classList.remove('pending', 'completed');
-        registerStep.classList.add('active');
-        
-        const icon = registerStep.querySelector('.check-icon');
-        if (icon) {
-            icon.textContent = '4';
-            icon.classList.add('pulse-icon');
-        }
-        
-        const status = registerStep.querySelector('.check-status');
-        if (status) status.textContent = 'Jetzt';
     }
     
     // Show inline app download
@@ -838,7 +823,6 @@ function selectOS(os) {
             registerStep.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 200);
     }
-    
 }
 
 // Note: Old app download section code removed - now using inline checklist flow
@@ -981,7 +965,7 @@ function showNextActivity() {
     // Replace content with slide animation
     feedEl.innerHTML = activityHTML;
     
-    // Auto-hide after 7 seconds
+    // Auto-hide after 18 seconds
     setTimeout(() => {
         feedEl.innerHTML = '';
     }, 7000);
