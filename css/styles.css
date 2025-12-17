@@ -1264,6 +1264,10 @@ img {
     box-shadow: 0 0 0 3px rgba(80, 184, 231, 0.1);
 }
 
+.form-group input[type="date"] {
+    height: 48px;
+}
+
 /* Checkboxes */
 .checkboxes-section {
     display: flex;
