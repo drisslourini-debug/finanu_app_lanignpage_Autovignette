@@ -780,7 +780,15 @@ function setStepState(stepEl, state) {
     stepEl.classList.remove('step-active', 'step-pending', 'step-completed');
     if (state === 'active') stepEl.classList.add('step-active');
     if (state === 'pending') stepEl.classList.add('step-pending');
-    if (state === 'completed') stepEl.classList.add('step-completed');
+    if (state === 'completed') {
+        stepEl.classList.add('step-completed');
+        // Change number to checkmark
+        const stepNumber = stepEl.querySelector('.step-number');
+        if (stepNumber && !stepNumber.classList.contains('completed')) {
+            stepNumber.classList.add('completed');
+            stepNumber.textContent = '✓';
+        }
+    }
 }
 
 // ===== Show App Download Success Message =====
