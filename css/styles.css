@@ -126,7 +126,7 @@ img {
 }
 
 .logo-nav-img {
-    height: 38px;
+    height: 108px;
     width: auto;
 }
 
@@ -2150,10 +2150,9 @@ img {
 }
 
 .footer-logo-img {
-    height: 36px;
+    height: 108px;
     width: auto;
     margin-bottom: 16px;
-    filter: brightness(0) invert(1);
 }
 
 .footer-description {
@@ -2570,7 +2569,7 @@ img {
     }
 
     .logo-nav-img {
-        height: 35px;
+        height: 95px;
     }
 
     .nav-actions {
@@ -3077,7 +3076,7 @@ img {
     }
 
     .footer-logo-img {
-        height: 28px;
+        height: 86px;
     }
 
     .footer-section h4 {
@@ -3377,7 +3376,7 @@ img {
     }
 
     .logo-nav-img {
-        height: 28px;
+        height: 76px;
     }
 
     .nav-actions {
@@ -4430,7 +4429,7 @@ img {
     }
 
     .footer-logo-img {
-        height: 32px;
+        height: 81px;
     }
 
     .footer-description {
