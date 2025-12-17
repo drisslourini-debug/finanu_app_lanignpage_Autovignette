@@ -793,17 +793,27 @@ function setStepState(stepEl, state) {
 
 // ===== Show App Download Success Message =====
 function showAppDownloadSuccess() {
-    const appWarning = document.querySelector('.app-warning');
-    const successMsg = document.getElementById('goalSuccessMessage');
     const appDownloadStep = document.getElementById('appDownloadStep');
+    const continueInAppStep = document.getElementById('continueInAppStep');
     
-    if (appWarning) appWarning.style.display = 'none';
-    if (successMsg) successMsg.style.display = 'block';
-    
-    // Mark step as completed
+    // Mark step 3 as completed
     if (appDownloadStep) {
-        appDownloadStep.classList.remove('step-pending', 'step-active');
-        appDownloadStep.classList.add('step-completed');
+        setStepState(appDownloadStep, 'completed');
+        // Hide the content
+        const appDownloadContent = document.getElementById('appDownloadContent');
+        if (appDownloadContent) {
+            appDownloadContent.style.display = 'none';
+        }
+    }
+    
+    // Show step 4 and mark as active
+    if (continueInAppStep) {
+        continueInAppStep.classList.remove('hidden');
+        setStepState(continueInAppStep, 'active');
+        const continueContent = document.getElementById('continueInAppContent');
+        if (continueContent) {
+            continueContent.style.display = 'block';
+        }
     }
     
     // Update email in success message
@@ -813,6 +823,13 @@ function showAppDownloadSuccess() {
         emailDisplays.forEach(el => {
             if (el) el.textContent = savedEmail;
         });
+    }
+    
+    // Scroll to new step
+    if (continueInAppStep) {
+        setTimeout(() => {
+            continueInAppStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
     }
 }
 

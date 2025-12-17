@@ -243,12 +243,12 @@
                             </div>
                         </div>
 
-                        <!-- Step 3: Download App - FINAL GOAL STEP -->
-                        <div class="step-item step-pending step-goal" id="appDownloadStep">
+                        <!-- Step 3: Download App -->
+                        <div class="step-item step-pending" id="appDownloadStep">
                             <div class="step-number">3</div>
                             <div class="step-body">
                                 <h3 class="step-title">App herunterladen</h3>
-                                <p class="step-description">Jetzt die App holen und im App weitermachen</p>
+                                <p class="step-description">Finanu App jetzt holen</p>
                                 
                                 <div class="step-content-expanded" id="appDownloadContent">
                                     <div class="app-icon-container">
@@ -263,21 +263,33 @@
                                         </a>
                                     </div>
                                     <div class="app-warning">
-                                        <strong>✅ Wichtig:</strong> Registriere dich mit derselben E-Mail-Adresse <strong>(<span id="registeredEmail"></span>)</strong> in der App, dann hochladen der Autoversicherungspolice und deine gratis E-Vignette ist gesichert!
+                                        <strong>✅ Wichtig:</strong> Registriere dich mit derselben E-Mail-Adresse <strong>(<span id="registeredEmail"></span>)</strong> in der App!
                                     </div>
-                                    
-                                    <!-- Success Message (shown after store click) -->
-                                    <div class="goal-success-message" id="goalSuccessMessage" style="display: none;">
-                                        <div class="goal-badge">
-                                            <span class="badge-icon">🎯</span>
-                                            <span class="badge-text">Perfekt! Jetzt im App weitermachen</span>
-                                        </div>
-                                        <p style="margin-top: 16px; color: var(--text-light); font-size: 0.95rem; line-height: 1.5;">
-                                            <strong>Nächste Schritte in der Finanu App:</strong><br>
-                                            1. Mit <strong><span id="registeredEmailSuccess"></span></strong> registrieren<br>
-                                            2. Autoversicherungspolice hochladen<br>
-                                            3. Gratis E-Vignette erhalten – jedes Jahr automatisch!
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Continue in App - FINAL GOAL STEP (shown after app download) -->
+                        <div class="step-item step-pending step-goal hidden" id="continueInAppStep">
+                            <div class="step-number">4</div>
+                            <div class="step-body">
+                                <h3 class="step-title">Im App weitermachen</h3>
+                                <p class="step-description">Alles erledigt – jetzt zur E-Vignette im App</p>
+                                
+                                <div class="step-content-expanded" id="continueInAppContent">
+                                    <div class="goal-badge" style="margin-bottom: 20px;">
+                                        <span class="badge-icon">🎯</span>
+                                        <span class="badge-text">Hier erledigt – im App weiterfahren</span>
+                                    </div>
+                                    <div style="background: linear-gradient(135deg, rgba(80, 184, 231, 0.08) 0%, rgba(255, 255, 255, 0.5) 100%); padding: 20px; border-radius: 12px; border-left: 4px solid var(--primary-color);">
+                                        <p style="margin: 0 0 16px 0; color: var(--text-dark); font-size: 1rem; font-weight: 600;">
+                                            <strong>Nächste Schritte in der Finanu App:</strong>
                                         </p>
+                                        <ol style="margin: 0; padding-left: 20px; color: var(--text-light); font-size: 0.95rem; line-height: 1.8;">
+                                            <li>Mit <strong style="color: var(--primary-color);"><span id="registeredEmailSuccess"></span></strong> registrieren</li>
+                                            <li>Autoversicherungspolice hochladen</li>
+                                            <li>Gratis E-Vignette erhalten – jedes Jahr automatisch!</li>
+                                        </ol>
                                     </div>
                                 </div>
                             </div>
@@ -315,7 +327,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>So holst du deine Gratis E-Vignette</h2>
-                <p>In drei einfachen Schritten zur jährlichen Vignettenerstattung.</p>
+                <p>In wenigen Schritten zur jährlichen Vignettenerstattung.</p>
             </div>
             <div class="roadmap-timeline">
                 <div class="roadmap-step">
