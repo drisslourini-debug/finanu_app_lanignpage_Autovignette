@@ -5054,6 +5054,13 @@ img {
         font-size: 1rem;
         padding: 14px 14px;
         height: 48px;
+        line-height: 1.2;
+    }
+
+    .form-group input[type="date"] {
+        font-size: 0.95rem;
+        padding: 12px 14px;
+        line-height: 1;
     }
 
     .checkboxes-section {
