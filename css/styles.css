@@ -379,6 +379,14 @@ img {
     position: relative;
 }
 
+.hero-visual-mobile {
+    display: none;
+}
+
+.hero-visual-desktop {
+    display: flex;
+}
+
 .visual-card {
     width: 100%;
     max-width: 420px;
@@ -1276,6 +1284,9 @@ img {
     font-size: 0.95rem;
     font-family: inherit;
     transition: all 0.2s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    line-height: 1.1;
 }
 
 .form-group input:focus {
@@ -1284,8 +1295,9 @@ img {
     box-shadow: 0 0 0 3px rgba(80, 184, 231, 0.1);
 }
 
-.form-group input[type="date"] {
-    height: 48px;
+.form-group input::-webkit-calendar-picker-indicator {
+    margin: 0 2px 0 0;
+    padding: 0;
 }
 
 /* Checkboxes */
@@ -3609,7 +3621,7 @@ img {
 
     /* ===== HERO SECTION MOBILE ===== */
     .hero {
-        padding: 32px 14px 42px;
+        padding: 26px 14px 34px;
         background: #ffffff;
         min-height: auto;
     }
@@ -3640,7 +3652,7 @@ img {
 
     .hero-wrapper {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 10px;
         padding: 0;
         align-items: stretch;
     }
@@ -3651,9 +3663,19 @@ img {
 
     .hero-visual {
         order: 2;
-        min-height: 140px;
-        margin: 0;
+        min-height: 120px;
+        margin: 4px 0 0;
         width: 100%;
+    }
+
+    .hero-visual-desktop {
+        display: none;
+    }
+
+    .hero-visual-mobile {
+        display: flex;
+        order: 2;
+        margin: 14px 0 14px;
     }
 
     .hero-badge {
@@ -3677,31 +3699,31 @@ img {
     }
 
     .hero-title {
-        font-size: 1.6rem;
-        line-height: 1.3;
-        margin-bottom: 14px;
-        letter-spacing: -0.3px;
+        font-size: 1.4rem;
+        line-height: 1.28;
+        margin-bottom: 10px;
+        letter-spacing: -0.2px;
         font-weight: 700;
         color: var(--text-primary);
     }
 
     .hero-subtitle {
-        font-size: 1rem;
-        margin-bottom: 12px;
-        line-height: 1.5;
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+        line-height: 1.45;
         color: var(--primary-color);
         font-weight: 600;
     }
 
     .hero-description {
-        font-size: 0.9rem;
-        margin-bottom: 20px;
-        line-height: 1.6;
+        font-size: 0.85rem;
+        margin-bottom: 14px;
+        line-height: 1.45;
         color: var(--text-secondary);
     }
 
     .cta-group {
-        margin-bottom: 16px;
+        margin-bottom: 12px;
     }
 
     .cta-with-icon {
@@ -3715,13 +3737,13 @@ img {
     }
 
     .btn-lg {
-        padding: 14px 20px;
+        padding: 12px 16px;
         font-size: 0.95rem;
         width: 100%;
-        min-height: 50px;
-        border-radius: var(--radius-md);
+        min-height: 48px;
+        border-radius: 12px;
         font-weight: 700;
-        letter-spacing: 0.2px;
+        letter-spacing: 0.15px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -3742,9 +3764,9 @@ img {
 
     .hero-subtext {
         flex-direction: column;
-        gap: 8px;
-        margin-top: 12px;
-        padding: 12px;
+        gap: 6px;
+        margin-top: 10px;
+        padding: 10px 12px;
         background: var(--bg-secondary);
         border-radius: var(--radius-md);
         border-left: 3px solid var(--primary-color);
@@ -3761,11 +3783,11 @@ img {
     }
 
     .hero-disclaimer {
-        font-size: 0.7rem;
-        margin-top: 10px;
-        line-height: 1.5;
+        font-size: 0.68rem;
+        margin-top: 8px;
+        line-height: 1.4;
         color: var(--text-secondary);
-        padding: 10px;
+        padding: 8px 10px;
         background: var(--bg-secondary);
         border-radius: var(--radius-md);
     }
@@ -3780,8 +3802,9 @@ img {
     .visual-image {
         width: 100%;
         height: auto;
-        max-width: 180px;
+        max-width: 140px;
         border-radius: var(--radius-lg);
+        margin-top: 8px;
     }
 
     .trust-indicators {
@@ -5261,61 +5284,69 @@ img {
     }
 
     .steps-container {
-        gap: 12px;
-        margin: 22px 0;
+        gap: 6px;
+        margin: 10px 0;
     }
 
     .step-item {
-        padding: 16px;
+        padding: 10px;
         border-radius: 10px;
-        gap: 14px;
+        gap: 8px;
     }
 
     .step-number {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
-        font-size: 1.05rem;
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        font-size: 0.95rem;
     }
 
     .step-title {
-        font-size: 1rem;
+        font-size: 0.92rem;
+        margin-bottom: 0;
     }
 
     .step-description {
-        font-size: 0.88rem;
+        font-size: 0.8rem;
+        line-height: 1.25;
     }
 
     .step-content-expanded {
-        margin-top: 14px;
-        padding-top: 14px;
+        margin-top: 6px;
+        padding-top: 6px;
     }
 
     .form-row {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 6px;
+    }
+
+    .form-group {
+        gap: 1px;
+    }
+
+    .form-group label {
+        font-size: 0.82rem;
+        line-height: 1.15;
     }
 
     .form-group input {
-        font-size: 1rem;
-        padding: 14px 14px;
-        height: 48px;
-        line-height: 1.2;
-    }
-
-    .form-group input[type="date"] {
-        font-size: 0.95rem;
-        padding: 12px 14px;
-        line-height: 1;
+        font-size: 0.9rem;
+        padding: 8px 10px;
+        height: 38px;
+        line-height: 1.05;
+        -webkit-appearance: none;
+        appearance: none;
     }
 
     .checkboxes-section {
         gap: 12px;
-        padding: 14px;
+        padding: 12px;
     }
 
     .checkbox-group label {
-        font-size: 0.88rem;
+        font-size: 0.82rem;
+        line-height: 1.5;
     }
 
     .app-icon {
