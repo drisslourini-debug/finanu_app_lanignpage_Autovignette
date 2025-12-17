@@ -655,7 +655,8 @@ function handlePersonalDataSubmit() {
         fullName
     };
 
-    // Update UI states
+    // Update UI states - mark steps 1 and 2 as completed
+    setStepState(document.getElementById('eligibilityStep'), 'completed');
     setStepState(document.getElementById('personalDataStep'), 'completed');
     setStepState(document.getElementById('appDownloadStep'), 'active');
 
@@ -679,23 +680,20 @@ function handlePersonalDataSubmit() {
         const storeButtons = document.querySelectorAll('.store-button');
         storeButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Show success message after short delay
-                setTimeout(() => {
-                    const appWarning = document.querySelector('.app-warning');
-                    const successMsg = document.getElementById('goalSuccessMessage');
-                    if (appWarning) appWarning.style.display = 'none';
-                    if (successMsg) successMsg.style.display = 'block';
-                    
-                    // Mark step as completed
-                    const appDownloadStep = document.getElementById('appDownloadStep');
-                    if (appDownloadStep) {
-                        appDownloadStep.classList.remove('step-pending', 'step-active');
-                        appDownloadStep.classList.add('step-completed');
-                    }
-                }, 2000);
+                // Save to localStorage and show success immediately
+                localStorage.setItem('finanu_app_downloaded', 'true');
+                localStorage.setItem('finanu_user_email', email);
+                showAppDownloadSuccess();
             });
         });
     }, 500);
+    
+    // Check if user returned from app store
+    if (localStorage.getItem('finanu_app_downloaded') === 'true') {
+        setTimeout(() => {
+            showAppDownloadSuccess();
+        }, 1000);
+    }
 
     // Scroll to next step
     const nextStep = document.getElementById('appDownloadStep');
@@ -783,6 +781,31 @@ function setStepState(stepEl, state) {
     if (state === 'active') stepEl.classList.add('step-active');
     if (state === 'pending') stepEl.classList.add('step-pending');
     if (state === 'completed') stepEl.classList.add('step-completed');
+}
+
+// ===== Show App Download Success Message =====
+function showAppDownloadSuccess() {
+    const appWarning = document.querySelector('.app-warning');
+    const successMsg = document.getElementById('goalSuccessMessage');
+    const appDownloadStep = document.getElementById('appDownloadStep');
+    
+    if (appWarning) appWarning.style.display = 'none';
+    if (successMsg) successMsg.style.display = 'block';
+    
+    // Mark step as completed
+    if (appDownloadStep) {
+        appDownloadStep.classList.remove('step-pending', 'step-active');
+        appDownloadStep.classList.add('step-completed');
+    }
+    
+    // Update email in success message
+    const savedEmail = localStorage.getItem('finanu_user_email');
+    if (savedEmail) {
+        const emailDisplays = document.querySelectorAll('#registeredEmail, #registeredEmailSuccess');
+        emailDisplays.forEach(el => {
+            if (el) el.textContent = savedEmail;
+        });
+    }
 }
 
 // ===== Select OS and Show App Download (inline version) =====
