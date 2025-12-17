@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Funktionen | Finanu App</title>
-  <link rel="stylesheet" href="css/styles.css?v=37">
+  <link rel="stylesheet" href="css/styles.css?v=43">
   <meta name="description" content="Alle Versicherungen in einer App: Policen-Manager, Vergleiche, Erinnerungen, Analysen und persönliche Beratung.">
 </head>
 <body>
@@ -23,116 +23,161 @@
     </div>
   </nav>
 
-  <section class="app-features-section" style="padding-top: 60px;">
+  <section class="app-features-section">
     <div class="container">
-      <div class="section-header">
-        <h2>Alles in einer App</h2>
-        <p>Behalte den Überblick über Verträge, Finanzen und Versicherungen – mit smarten Tools, die dir Arbeit abnehmen.</p>
+      <div class="feature-hero">
+        <div class="hero-copy">
+          <div class="pill pill-ghost">Alle Versicherungen · Ein zentrales Hub</div>
+          <h1>Finanu Funktionen</h1>
+          <p class="hero-lead">Verträge, Angebote, Budget, Beratung und Schadenabwicklung – alles orchestriert in einer App, mit Automationen und smarten Alerts.</p>
+          <div class="hero-bullets">
+            <span class="pill">Smarte Erinnerungen</span>
+            <span class="pill">API-Integrationen</span>
+            <span class="pill">Dokumenten-Hub</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-glow" href="/">Quiz starten</a>
+            <a class="btn btn-outline" href="#cta">App herunterladen</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-metric">
+            <div class="metric-value">360°</div>
+            <div class="metric-label">Budget &amp; Policen im Blick</div>
+          </div>
+          <div class="hero-metric">
+            <div class="metric-value">24/7</div>
+            <div class="metric-label">Smart Alerts &amp; Reminders</div>
+          </div>
+          <div class="hero-metric">
+            <div class="metric-value">API</div>
+            <div class="metric-label">Direkte Partner-Integrationen</div>
+          </div>
+        </div>
       </div>
 
-      <div class="features-wrapper">
-        <div class="feature-item" id="vertragsverfolgung">
-          <div class="feature-icon-box">
+      <div class="feature-grid">
+        <div class="feature-card" id="vertragsverfolgung">
+          <div class="card-icon">
             <img src="assets/images/features/contract-management.svg" alt="Smarte Vertragsverfolgung">
           </div>
-          <div class="feature-text">
+          <div class="card-header">
             <h3>Smarte Vertragsverfolgung</h3>
-            <ul>
-              <li>Vollständige Übersicht über alle Verträge (eigene und familiäre)</li>
-              <li>Detaillierte Vertragsinformationen (z. B. Versicherungen, Hypotheken, Mobilfunkverträge)</li>
-              <li>Digitale Dokumentenverwaltung</li>
-              <li>Automatische Erinnerungen an Vertragslaufzeiten und Kündigungsfristen</li>
-              <li>Einfache Anpassung und Verwaltung der Vertragskonditionen</li>
-              <li>Zentrales Dashboard für effizientes Vertragsmanagement</li>
-            </ul>
+            <span class="pill pill-ghost">Automatisiert</span>
           </div>
+          <ul>
+            <li>Vollständige Übersicht über alle Verträge (eigene &amp; familiäre)</li>
+            <li>Detaillierte Vertragsinfos (Versicherungen, Hypotheken, Mobilfunk)</li>
+            <li>Digitale Dokumentenverwaltung</li>
+            <li>Automatische Erinnerungen zu Laufzeiten &amp; Kündigungen</li>
+            <li>Einfache Anpassung von Vertragskonditionen</li>
+            <li>Zentrales Dashboard für effizientes Management</li>
+          </ul>
         </div>
 
-        <div class="feature-item" id="angebote">
-          <div class="feature-icon-box">
+        <div class="feature-card" id="angebote">
+          <div class="card-icon">
             <img src="assets/images/features/compare-insurance.svg" alt="Personalisierte Angebote">
           </div>
-          <div class="feature-text">
+          <div class="card-header">
             <h3>Personalisierte Angebote</h3>
-            <ul>
-              <li>Nutzerprofilierung &amp; Datenanalyse</li>
-              <li>Angebotsabgleich mit Partneranbietern</li>
-              <li>Visueller Angebotsvergleich</li>
-              <li>Direkte Angebotsanfrage &amp; Anbieterkontakt</li>
-              <li>Personalisierte Benachrichtigungen &amp; Warnungen</li>
-            </ul>
+            <span class="pill pill-ghost">Insight-basiert</span>
           </div>
+          <ul>
+            <li>Nutzerprofilierung &amp; Datenanalyse</li>
+            <li>Angebotsabgleich mit Partneranbietern</li>
+            <li>Visueller Angebotsvergleich</li>
+            <li>Direkte Angebotsanfrage &amp; Anbieterkontakt</li>
+            <li>Personalisierte Benachrichtigungen &amp; Warnungen</li>
+          </ul>
         </div>
 
-        <div class="feature-item" id="budget">
-          <div class="feature-icon-box">
+        <div class="feature-card" id="budget">
+          <div class="card-icon">
             <img src="assets/images/features/budget-calculator.svg" alt="360° Budgetplanung">
           </div>
-          <div class="feature-text">
+          <div class="card-header">
             <h3>360° Budgetplanung</h3>
-            <ul>
-              <li>Einen Überblick über Einnahmen und Ausgaben</li>
-              <li>Ermittlung von Sparpotenzialen</li>
-              <li>Aufdeckung von Ausgabenüberschreitungen</li>
-              <li>Prognose der zukünftigen Finanzlage</li>
-              <li>Empfehlungen für ein besseres Budgetmanagement</li>
-            </ul>
+            <span class="pill pill-ghost">Financial Health</span>
           </div>
+          <ul>
+            <li>Überblick über Einnahmen &amp; Ausgaben</li>
+            <li>Sparpotenziale erkennen</li>
+            <li>Ausgabenüberschreitungen aufdecken</li>
+            <li>Zukunftsprognosen fürs Budget</li>
+            <li>Empfehlungen für besseres Finanzmanagement</li>
+          </ul>
         </div>
 
-        <div class="feature-item" id="termine">
-          <div class="feature-icon-box">
+        <div class="feature-card" id="termine">
+          <div class="card-icon">
             <img src="assets/images/features/contract-management.svg" alt="Termine mit Beratern">
           </div>
-          <div class="feature-text">
+          <div class="card-header">
             <h3>Termine mit Beratern</h3>
-            <ul>
-              <li>Datum &amp; Uhrzeit wählen</li>
-              <li>Berater auswählen</li>
-              <li>Art des Treffens (zu Hause, im Büro oder per Video)</li>
-              <li>Spezielle Anfrage hinzufügen</li>
-              <li>Termin bestätigen</li>
-              <li>Termin verwalten</li>
-            </ul>
+            <span class="pill pill-ghost">Hybrid</span>
           </div>
+          <ul>
+            <li>Datum &amp; Uhrzeit wählen</li>
+            <li>Berater auswählen</li>
+            <li>Treffen: vor Ort, Büro oder Video</li>
+            <li>Spezielle Anfragen hinterlegen</li>
+            <li>Termin bestätigen &amp; verwalten</li>
+          </ul>
         </div>
 
-        <div class="feature-item" id="schaden">
-          <div class="feature-icon-box">
+        <div class="feature-card" id="schaden">
+          <div class="card-icon">
             <img src="assets/images/features/smart-analysis.svg" alt="Schadenmanagement">
           </div>
-          <div class="feature-text">
+          <div class="card-header">
             <h3>Schadenmanagement</h3>
-            <ul>
-              <li>Schadenübersicht &amp; Nachverfolgung</li>
-              <li>Technisches Problem</li>
-              <li>Leistungsbeeinträchtigung</li>
-              <li>Sicherheitslücke</li>
-              <li>Funktionaler Defekt</li>
-              <li>Kompatibilitätskonflikt</li>
-              <li>Datenintegritätsproblem</li>
-            </ul>
+            <span class="pill pill-ghost">Status-Tracking</span>
           </div>
+          <ul>
+            <li>Schadenübersicht &amp; Nachverfolgung</li>
+            <li>Technisches Problem oder Leistungsbeeinträchtigung</li>
+            <li>Sicherheitslücke oder funktionaler Defekt</li>
+            <li>Kompatibilitätskonflikt &amp; Datenintegrität</li>
+          </ul>
         </div>
 
-        <div class="feature-item" id="hub-integration">
-          <div class="feature-icon-box">
+        <div class="feature-card" id="hub-integration">
+          <div class="card-icon">
             <img src="assets/images/features/smart-analysis.svg" alt="Hub-Integration">
           </div>
-          <div class="feature-text">
+          <div class="card-header">
             <h3>Hub-Integration</h3>
-            <ul>
-              <li>Übersicht über alle Anwendungsdaten in einem zentralen Hub</li>
-              <li>Alle Nutzerdaten (Verträge, Policen, Schadensfälle, Angebote, Dokumente) ohne Datensilos</li>
-              <li>Direkte Integration mit Versicherern, Beratern, Gesundheitsdienstleistern und Finanzpartnern über sichere APIs</li>
-              <li>Flexibel: Integrationen über den Versicherungsbereich hinaus</li>
-              <li>Automatisierungen von Vertragsaktualisierung bis Schadenbearbeitung – spart Zeit für Kunden und Berater</li>
-            </ul>
+            <span class="pill pill-ghost">APIs &amp; Automationen</span>
           </div>
+          <ul>
+            <li>Zentrales Hub für Verträge, Policen, Schäden, Angebote &amp; Dokumente</li>
+            <li>Direkte Integration mit Versicherern, Beratern, Gesundheits- &amp; Finanzpartnern</li>
+            <li>Flexibel über Versicherungen hinaus erweiterbar</li>
+            <li>Automatisierungen von Vertragsupdate bis Schadenbearbeitung</li>
+          </ul>
         </div>
       </div>
 
-      <div class="highlights-cta-wrapper" style="margin-top: 30px;">
+      <div class="value-grid">
+        <div class="value-card">
+          <div class="pill">Datensicherheit</div>
+          <h4>Privacy by Design</h4>
+          <p>Zero-trust Architektur, verschlüsselte Dokumentenablage und rollenbasierter Zugriff.</p>
+        </div>
+        <div class="value-card">
+          <div class="pill">Assistenz</div>
+          <h4>Proaktive Alerts</h4>
+          <p>Kündigungsfristen, Prämienwechsel oder Budgetabweichungen – du erhältst rechtzeitig Signale.</p>
+        </div>
+        <div class="value-card">
+          <div class="pill">Performance</div>
+          <h4>Automationen</h4>
+          <p>Wiederkehrende Tasks laufen im Hintergrund: Vertragsaktualisierungen, Upload-Checks, Status-Updates.</p>
+        </div>
+      </div>
+
+      <div class="highlights-cta-wrapper" id="cta">
         <div class="highlights-column">
           <div class="highlight-badge">
             <span class="highlight-emoji">🎁</span>
@@ -141,11 +186,18 @@
               <p>Für berechtigte Nutzer – jährlich automatisch.</p>
             </div>
           </div>
+          <div class="highlight-badge">
+            <span class="highlight-emoji">⚡</span>
+            <div>
+              <strong>Sofort startklar</strong>
+              <p>In Minuten loslegen, alle Dokumente digital ablegen.</p>
+            </div>
+          </div>
         </div>
         <div class="cta-column">
           <div class="app-cta-card">
             <h3>Jetzt Finanu App holen</h3>
-            <p>Verträge, Budget und Versicherungen – alles zentral in einer App.</p>
+            <p>Verträge, Budget, Angebote und Schäden zentral steuern – mit Alerts und Automationen.</p>
             <div class="app-store-buttons">
               <a href="https://apps.apple.com/ch/app/finanu-schweiz/id6738845629" target="_blank" rel="noopener noreferrer" class="app-store-button">
                 <img src="assets/app-badges/apple-app-store.svg" alt="App Store">
@@ -161,8 +213,8 @@
   </section>
 
   <footer class="footer">
-    <div class="container">
-      <p>&copy; Finanu AG</p>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Finanu AG. Alle Rechte vorbehalten.</p>
     </div>
   </footer>
 

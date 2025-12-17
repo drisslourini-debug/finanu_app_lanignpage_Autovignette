@@ -545,11 +545,10 @@ function goBackToHome() {
         eligible: false
     };
 
-    // Hide all sections except hero
+    // Show all main sections again
     document.querySelectorAll('section').forEach(section => {
-        if (section.id !== 'heroSection') {
-            section.classList.add('hidden');
-        }
+        section.classList.remove('hidden');
+        section.style.display = '';
     });
     hideElement('liveProofBar');
     hideElement('activityFeed');
@@ -558,6 +557,9 @@ function goBackToHome() {
     if (heroSection) {
         heroSection.style.display = 'block';
     }
+    if (quizSection) quizSection.style.display = 'none';
+    if (resultsSection) resultsSection.style.display = 'none';
+    if (notEligibleSection) notEligibleSection.style.display = 'none';
     
     // Show mobile sticky CTA
     if (mobileStickyCta) {
