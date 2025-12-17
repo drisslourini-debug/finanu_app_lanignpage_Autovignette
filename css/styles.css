@@ -1339,6 +1339,21 @@ img {
     opacity: 0.8;
 }
 
+/* App Icon Container */
+.app-icon-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.app-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 28px;
+    box-shadow: 0 8px 24px rgba(80, 184, 231, 0.2);
+    object-fit: contain;
+}
+
 /* App Stores Section */
 .app-stores {
     display: flex;
@@ -5086,6 +5101,11 @@ img {
 
     .checkbox-group label {
         font-size: 0.88rem;
+    }
+
+    .app-icon {
+        width: 100px;
+        height: 100px;
     }
 
     .app-stores {
