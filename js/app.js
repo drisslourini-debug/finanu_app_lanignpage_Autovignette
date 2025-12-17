@@ -665,8 +665,37 @@ function handlePersonalDataSubmit() {
     window.capturedEmail = email;
     window.capturedName = fullName;
 
+    // Display email in app download step
+    const emailDisplays = document.querySelectorAll('#registeredEmail, #registeredEmailSuccess');
+    emailDisplays.forEach(el => {
+        if (el) el.textContent = email;
+    });
+
     console.log('Lead captured:', { fullName, email, gdprAccepted, marketingAccepted });
     sendLeadToBackend({ fullName, email, gdprAccepted, marketingAccepted, birthdate });
+    
+    // Add store button tracking to show success message
+    setTimeout(() => {
+        const storeButtons = document.querySelectorAll('.store-button');
+        storeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Show success message after short delay
+                setTimeout(() => {
+                    const appWarning = document.querySelector('.app-warning');
+                    const successMsg = document.getElementById('goalSuccessMessage');
+                    if (appWarning) appWarning.style.display = 'none';
+                    if (successMsg) successMsg.style.display = 'block';
+                    
+                    // Mark step as completed
+                    const appDownloadStep = document.getElementById('appDownloadStep');
+                    if (appDownloadStep) {
+                        appDownloadStep.classList.remove('step-pending', 'step-active');
+                        appDownloadStep.classList.add('step-completed');
+                    }
+                }, 2000);
+            });
+        });
+    }, 500);
 
     // Scroll to next step
     const nextStep = document.getElementById('appDownloadStep');

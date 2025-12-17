@@ -237,18 +237,18 @@
                                             </div>
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary btn-full" id="submitPersonalData">Weiter zu App-Download →</button>
+                                        <button type="submit" class="btn btn-primary btn-full" id="submitPersonalData">Jetzt App holen →</button>
                                     </form>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Step 3: Download App & Register -->
-                        <div class="step-item step-pending" id="appDownloadStep">
+                        <!-- Step 3: Download App - FINAL GOAL STEP -->
+                        <div class="step-item step-pending step-goal" id="appDownloadStep">
                             <div class="step-number">3</div>
                             <div class="step-body">
-                                <h3 class="step-title">App herunterladen & registrieren</h3>
-                                <p class="step-description">Mit derselben E-Mail in der App registrieren</p>
+                                <h3 class="step-title">App herunterladen</h3>
+                                <p class="step-description">Jetzt die App holen und im App weitermachen</p>
                                 
                                 <div class="step-content-expanded" id="appDownloadContent">
                                     <div class="app-icon-container">
@@ -263,30 +263,22 @@
                                         </a>
                                     </div>
                                     <div class="app-warning">
-                                        <strong>⚠️ Wichtig:</strong> Registriere dich mit derselben E-Mail-Adresse in der App, sonst ist dein Vignetten-Angebot nicht gesichert!
+                                        <strong>✅ Wichtig:</strong> Registriere dich mit derselben E-Mail-Adresse <strong>(<span id="registeredEmail"></span>)</strong> in der App, dann hochladen der Autoversicherungspolice und deine gratis E-Vignette ist gesichert!
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Step 4: Upload Insurance Policy -->
-                        <div class="step-item step-pending" id="uploadStep">
-                            <div class="step-number">4</div>
-                            <div class="step-body">
-                                <h3 class="step-title">Autoversicherungspolice hochladen</h3>
-                                <p class="step-description">Lade deine aktuelle Police hoch</p>
-                            </div>
-                        </div>
-
-                        <!-- Step 5: Goal - Free E-Vignette -->
-                        <div class="step-item step-goal" id="goalStep">
-                            <div class="step-number">5</div>
-                            <div class="step-body">
-                                <h3 class="step-title">Deine Gratis E-Vignette</h3>
-                                <p class="step-description">Jährlich gratis – solange du aktiv bist</p>
-                                <div class="goal-badge">
-                                    <span class="badge-icon">🎯</span>
-                                    <span class="badge-text">Ziel erreicht</span>
+                                    
+                                    <!-- Success Message (shown after store click) -->
+                                    <div class="goal-success-message" id="goalSuccessMessage" style="display: none;">
+                                        <div class="goal-badge">
+                                            <span class="badge-icon">🎯</span>
+                                            <span class="badge-text">Perfekt! Jetzt im App weitermachen</span>
+                                        </div>
+                                        <p style="margin-top: 16px; color: var(--text-light); font-size: 0.95rem; line-height: 1.5;">
+                                            <strong>Nächste Schritte in der Finanu App:</strong><br>
+                                            1. Mit <strong><span id="registeredEmailSuccess"></span></strong> registrieren<br>
+                                            2. Autoversicherungspolice hochladen<br>
+                                            3. Gratis E-Vignette erhalten – jedes Jahr automatisch!
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -323,7 +315,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>So holst du deine Gratis E-Vignette</h2>
-                <p>In sechs einfachen Schritten zur jährlichen Vignettenerstattung.</p>
+                <p>In drei einfachen Schritten zur jährlichen Vignettenerstattung.</p>
             </div>
             <div class="roadmap-timeline">
                 <div class="roadmap-step">
@@ -341,40 +333,16 @@
                         <p>Wir reservieren deinen exklusiven E-Vignetten-Code für 24 Stunden.</p>
                     </div>
                 </div>
-                <div class="roadmap-connector"></div>
-                <div class="roadmap-step">
-                    <div class="step-circle">3</div>
-                    <div class="step-content">
-                        <h3>App herunterladen</h3>
-                        <p>Lade die Finanu App kostenlos aus dem App Store oder Google Play herunter.</p>
-                    </div>
-                </div>
-                <div class="roadmap-connector"></div>
-                <div class="roadmap-step">
-                    <div class="step-circle">4</div>
-                    <div class="step-content">
-                        <h3>Registrieren</h3>
-                        <p>Erstelle dein Finanu-Konto in weniger als einer Minute.</p>
-                    </div>
-                </div>
-                <div class="roadmap-connector"></div>
-                <div class="roadmap-step">
-                    <div class="step-circle">5</div>
-                    <div class="step-content">
-                        <h3>Autoversicherungspolice hochladen</h3>
-                        <p>Lade deine Auto-Versicherungspolice hoch und aktiviere deine Gratis E-Vignette.</p>
-                    </div>
-                </div>
                 <div class="roadmap-connector roadmap-connector-final"></div>
                 <div class="roadmap-step roadmap-goal">
                     <div class="step-circle step-goal">🎯</div>
                     <div class="step-content">
-                        <h3>Deine Gratis E-Vignette</h3>
-                        <p>Jedes Jahr wieder – solange du aktiver Nutzer der Finanu App bist.</p>
+                        <h3>App holen & weitermachen</h3>
+                        <p>Lade die Finanu App, registriere dich, lade deine Autoversicherungspolice hoch und erhalte deine gratis E-Vignette – jedes Jahr automatisch!</p>
                         <div class="goal-benefits">
+                            <span class="benefit-tag">✓ App kostenlos</span>
                             <span class="benefit-tag">✓ Gratis E-Vignette</span>
                             <span class="benefit-tag">✓ Jedes Jahr automatisch</span>
-                            <span class="benefit-tag">✓ Solange du aktiv bist</span>
                         </div>
                     </div>
                 </div>
