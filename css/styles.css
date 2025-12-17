@@ -130,15 +130,6 @@ img {
     width: auto;
 }
 
-.app-icon-nav {
-    height: 42px;
-    width: 42px;
-    border-radius: 10px;
-    object-fit: contain;
-    margin-left: 12px;
-    box-shadow: 0 2px 8px rgba(80, 184, 231, 0.15);
-}
-
 .nav-actions {
     display: flex;
     align-items: center;
@@ -3455,12 +3446,6 @@ img {
 
     .logo-nav-img {
         height: 28px;
-    }
-
-    .app-icon-nav {
-        height: 32px;
-        width: 32px;
-        margin-left: 8px;
     }
 
     .nav-actions {
