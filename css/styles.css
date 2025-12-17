@@ -1338,9 +1338,9 @@ img {
 /* App Stores Section */
 .app-stores {
     display: flex;
-    gap: 12px;
+    gap: 16px;
     justify-content: center;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 .store-button {
@@ -1349,21 +1349,22 @@ img {
     justify-content: center;
     text-decoration: none;
     transition: all 0.2s ease;
-    border-radius: 8px;
-    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
     background: white;
-    padding: 6px 10px;
-    height: 44px;
+    padding: 10px 16px;
+    height: 56px;
+    min-width: 160px;
 }
 
 .store-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(80, 184, 231, 0.15);
+    box-shadow: 0 6px 20px rgba(80, 184, 231, 0.25);
     border-color: var(--primary-color);
 }
 
 .store-button img {
-    height: 32px;
+    height: 40px;
     width: auto;
 }
 
@@ -1429,6 +1430,9 @@ img {
 
 .btn-full {
     width: 100%;
+    min-height: 50px;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 .timer-icon {
@@ -5081,12 +5085,17 @@ img {
 
     .app-stores {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
     }
 
     .store-button {
         width: 100%;
-        height: 44px;
+        height: 54px;
+        padding: 12px 16px;
+    }
+
+    .store-button img {
+        height: 38px;
     }
 
     .app-warning {
