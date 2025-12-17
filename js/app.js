@@ -111,6 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('DOM loaded, initializing event listeners...');
     initializeEventListeners();
+    
+    // Check if user returned from app store (only on page load)
+    checkAppDownloadStatus();
 });
 
 function initializeEventListeners() {
@@ -687,13 +690,6 @@ function handlePersonalDataSubmit() {
             });
         });
     }, 500);
-    
-    // Check if user returned from app store
-    if (localStorage.getItem('finanu_app_downloaded') === 'true') {
-        setTimeout(() => {
-            showAppDownloadSuccess();
-        }, 1000);
-    }
 
     // Scroll to next step
     const nextStep = document.getElementById('appDownloadStep');
@@ -830,6 +826,22 @@ function showAppDownloadSuccess() {
         setTimeout(() => {
             continueInAppStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 300);
+    }
+}
+
+// ===== Check App Download Status on Page Load =====
+function checkAppDownloadStatus() {
+    // Only check if we're on the results section with app download visible
+    if (localStorage.getItem('finanu_app_downloaded') === 'true') {
+        const resultsSection = document.getElementById('resultsSection');
+        const appDownloadStep = document.getElementById('appDownloadStep');
+        
+        // Only show success if results section is visible and app download step exists
+        if (resultsSection && !resultsSection.classList.contains('hidden') && appDownloadStep) {
+            setTimeout(() => {
+                showAppDownloadSuccess();
+            }, 500);
+        }
     }
 }
 
