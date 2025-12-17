@@ -153,9 +153,18 @@ function initializeEventListeners() {
     if (q1OptionYes) q1OptionYes.addEventListener('click', function() { selectAnswer(1, 'yes'); });
     if (q1OptionNo) q1OptionNo.addEventListener('click', function() { selectAnswer(1, 'no'); });
     
-    // Email Capture Form
-    const emailCaptureBtn = document.getElementById('emailCaptureBtn');
-    if (emailCaptureBtn) emailCaptureBtn.addEventListener('click', handleInlineEmailCapture);
+    // New personal data form
+    const personalDataForm = document.getElementById('personalDataForm');
+    const submitPersonalDataBtn = document.getElementById('submitPersonalData');
+    if (personalDataForm) {
+        personalDataForm.addEventListener('submit', handlePersonalDataSubmit);
+    }
+    if (submitPersonalDataBtn) {
+        submitPersonalDataBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            handlePersonalDataSubmit();
+        });
+    }
     
     // OS Selection Buttons
     const iosButton = document.getElementById('iosButton');
@@ -433,32 +442,18 @@ function showResults() {
     hideElement('activityFeed');
     hideElement('mobileStickyCta');
     
-    // Initialize checklist state: only Step 2 (email) active/expanded
-    const emailStep = document.getElementById('emailCapturedStep');
+    // Initialize checklist state: Step 2 active, others pending
+    const personalDataStep = document.getElementById('personalDataStep');
     const appDownloadStep = document.getElementById('appDownloadStep');
-    const registerStep = document.getElementById('registerStep');
     const uploadStep = document.getElementById('uploadStep');
 
-    if (emailStep) {
-        emailStep.classList.remove('completed');
-        emailStep.classList.add('pending', 'active');
-    }
-    if (appDownloadStep) {
-        appDownloadStep.classList.remove('active', 'completed');
-        appDownloadStep.classList.add('pending');
-    }
-    if (registerStep) {
-        registerStep.classList.remove('active', 'completed');
-        registerStep.classList.add('pending');
-    }
-    if (uploadStep) {
-        uploadStep.classList.remove('active', 'completed');
-        uploadStep.classList.add('pending');
-    }
+    setStepState(personalDataStep, 'active');
+    setStepState(appDownloadStep, 'pending');
+    setStepState(uploadStep, 'pending');
 
     // Step actions visibility
-    showElement('emailFormInline');      // Step 2 form open
-    hideElement('osSelectionInline');    // Step 3 closed until email done
+    showElement('personalDataContent');
+    hideElement('appDownloadContent');
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -591,71 +586,93 @@ function goBackToHome() {
 }
 
 // ===== Handle Inline Email Capture =====
-function handleInlineEmailCapture() {
-    const fullNameInput = document.getElementById('fullNameInline');
-    const emailInput = document.getElementById('emailAddressInline');
-    const gdprCheckbox = document.getElementById('gdprConsent');
-    
-    const name = fullNameInput?.value.trim();
+function handlePersonalDataSubmit() {
+    const firstNameInput = document.getElementById('firstName');
+    const lastNameInput = document.getElementById('lastName');
+    const birthdateInput = document.getElementById('birthdate');
+    const emailInput = document.getElementById('email');
+    const gdprCheckbox = document.getElementById('agreeConsent');
+    const marketingCheckbox = document.getElementById('marketingConsent');
+
+    const firstName = firstNameInput?.value.trim();
+    const lastName = lastNameInput?.value.trim();
+    const birthdate = birthdateInput?.value.trim();
     const email = emailInput?.value.trim();
     const gdprAccepted = gdprCheckbox?.checked;
-    
-    // Clear previous errors
+    const marketingAccepted = marketingCheckbox?.checked || false;
+
     clearFormErrors();
-    
-    // Validation
+
     const errors = [];
-    
-    if (!name) {
-        errors.push('Bitte gib deinen Namen ein');
-        fullNameInput?.setAttribute('aria-invalid', 'true');
+
+    if (!firstName) {
+        errors.push('Bitte gib deinen Vornamen ein');
+        firstNameInput?.setAttribute('aria-invalid', 'true');
     }
-    
+
+    if (!lastName) {
+        errors.push('Bitte gib deinen Nachnamen ein');
+        lastNameInput?.setAttribute('aria-invalid', 'true');
+    }
+
+    if (!birthdate) {
+        errors.push('Bitte gib dein Geburtsdatum ein');
+        birthdateInput?.setAttribute('aria-invalid', 'true');
+    }
+
     if (!email) {
         errors.push('Bitte gib deine E-Mail-Adresse ein');
         emailInput?.setAttribute('aria-invalid', 'true');
     } else {
-        // Validate email format
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             errors.push('Bitte gib eine gültige E-Mail-Adresse ein');
             emailInput?.setAttribute('aria-invalid', 'true');
         }
     }
-    
+
     if (!gdprAccepted) {
-        errors.push('Bitte akzeptiere die Datenschutzrichtlinie');
+        errors.push('Bitte akzeptiere die Datenschutzrichtlinie & AGB');
         gdprCheckbox?.setAttribute('aria-invalid', 'true');
     }
-    
+
     if (errors.length > 0) {
         showFormError(errors.join('\n'));
         return;
     }
-    
-    // All validations passed
-    fullNameInput?.removeAttribute('aria-invalid');
-    emailInput?.removeAttribute('aria-invalid');
-    gdprCheckbox?.removeAttribute('aria-invalid');
-    
-    // Update checklist with email
-    updateChecklistWithEmail(email);
-    
-    // Hide inline form
-    hideElement('emailFormInline');
-    
-    // Show OS selection inline
-    showElement('osSelectionInline');
-    
-    // Store email for later use
+
+    // Clear error states
+    [firstNameInput, lastNameInput, birthdateInput, emailInput, gdprCheckbox].forEach(el => el?.removeAttribute('aria-invalid'));
+
+    const fullName = `${firstName} ${lastName}`.trim();
+    window.userData = {
+        firstName,
+        lastName,
+        birthdate,
+        email,
+        gdprAccepted,
+        marketingAccepted,
+        fullName
+    };
+
+    // Update UI states
+    setStepState(document.getElementById('personalDataStep'), 'completed');
+    setStepState(document.getElementById('appDownloadStep'), 'active');
+
+    hideElement('personalDataContent');
+    showElement('appDownloadContent');
+
     window.capturedEmail = email;
-    window.capturedName = name;
-    
-    // Log for debugging
-    console.log('Lead captured:', { name, email, gdprAccepted });
-    
-    // Send to backend (could be Supabase, Make webhook, etc.)
-    sendLeadToBackend({ name, email, gdprAccepted });
+    window.capturedName = fullName;
+
+    console.log('Lead captured:', { fullName, email, gdprAccepted, marketingAccepted });
+    sendLeadToBackend({ fullName, email, gdprAccepted, marketingAccepted, birthdate });
+
+    // Scroll to next step
+    const nextStep = document.getElementById('appDownloadStep');
+    if (nextStep) {
+        nextStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 }
 
 function clearFormErrors() {
@@ -716,56 +733,27 @@ async function sendLeadToBackend(data) {
 
 // ===== Update Checklist with Email =====
 function updateChecklistWithEmail(email) {
-    // Update email display elements
+    // Optional display targets for future use
     const emailDisplays = [
         document.getElementById('userEmailDisplay'),
-        document.getElementById('emailForApp'),
         document.getElementById('emailReminder'),
         document.getElementById('emailMatchDisplay')
     ];
-    
     emailDisplays.forEach(el => {
         if (el) {
             el.textContent = email;
-            el.style.color = '#dc2626';
+            el.style.color = '#0f172a';
             el.style.fontWeight = '700';
         }
     });
-    
-    // Update email captured checklist item to completed
-    const emailStep = document.getElementById('emailCapturedStep');
-    if (emailStep) {
-        emailStep.classList.remove('pending');
-        emailStep.classList.add('completed');
-        emailStep.classList.remove('active');
-        
-        const icon = emailStep.querySelector('.check-icon');
-        if (icon) icon.textContent = '✓';
-        
-        const status = emailStep.querySelector('.check-status');
-        if (status) status.textContent = 'Erledigt';
-        
-        const span = emailStep.querySelector('span');
-        if (span) {
-            span.innerHTML = `Mit <strong style="color: #dc2626;">${email}</strong> reserviert`;
-        }
-    }
-    
-    // Highlight app download step (becomes active)
-    const appDownloadStep = document.getElementById('appDownloadStep');
-    if (appDownloadStep) {
-        appDownloadStep.classList.remove('pending');
-        appDownloadStep.classList.add('active');
-        
-        const icon = appDownloadStep.querySelector('.check-icon');
-        if (icon) {
-            icon.textContent = '3';
-            icon.classList.add('pulse-icon');
-        }
-        
-        const status = appDownloadStep.querySelector('.check-status');
-        if (status) status.textContent = 'Jetzt';
-    }
+}
+
+function setStepState(stepEl, state) {
+    if (!stepEl) return;
+    stepEl.classList.remove('step-active', 'step-pending', 'step-completed');
+    if (state === 'active') stepEl.classList.add('step-active');
+    if (state === 'pending') stepEl.classList.add('step-pending');
+    if (state === 'completed') stepEl.classList.add('step-completed');
 }
 
 // ===== Select OS and Show App Download (inline version) =====

@@ -9,7 +9,7 @@
     <meta property="og:description" content="Finanu schenkt dir jährlich die Vignette. Qualifiziere dich jetzt in einer Minute und spare CHF 40 pro Jahr.">
     <meta property="og:type" content="website">
     <title>Nie wieder für die Autobahn zahlen | Finanu</title>
-    <link rel="stylesheet" href="css/styles.css?v=32">
+    <link rel="stylesheet" href="css/styles.css?v=34">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
@@ -166,145 +166,133 @@
         <!-- Results Section -->
         <section class="results-section hidden" id="resultsSection" role="main" aria-labelledby="resultsTitle">
             <div class="results-container">
-                <div class="results-card success animate-scale-in">
-                    <div class="confetti"></div>
-                    <div class="results-icon-wrapper">
-                        <div class="results-icon pulse-success">🎉</div>
-                        <div class="success-ring"></div>
-                    </div>
-                    <h2 class="results-title" id="resultsTitle">Perfekt! Du bist qualifiziert 🎉</h2>
-                    <p class="results-message">Deine <strong>CHF 40 E-Vignetten-Erstattung</strong> ist reserviert. Lade jetzt deine Autoversicherungspolice in die App hoch und aktiviere sie!</p>
-                    
-                    <!-- E-Vignette Image -->
-                    <div class="vignette-result-display">
-                        <img src="assets/images/hero/evignette-2026.png" alt="E-Vignette 2026" class="vignette-result-image">
-                        <p class="vignette-result-label">Deine reservierte E-Vignette</p>
+                <div class="results-content">
+                    <!-- Success Header -->
+                    <div class="results-header">
+                        <div class="results-icon-wrapper">
+                            <div class="results-icon">✓</div>
+                        </div>
+                        <h2 id="resultsTitle">Berechtigung gesichert – weiter geht's 🎉</h2>
+                        <p class="results-subtitle">Deine CHF 40 E-Vignette ist reserviert. Schließe diese Schritte kurz ab:</p>
                     </div>
 
-                    <!-- Live Checklist -->
-                    <div class="live-checklist">
-                        <h3 class="checklist-title">📋 Deine nächsten Schritte</h3>
-                        <p class="checklist-subtitle">Folge dieser Checkliste, um deine E-Vignette zu aktivieren:</p>
-                        
-                        <div class="checklist-items">
-                            <div class="checklist-item completed">
-                                <div class="checklist-header">
-                                    <div class="check-icon">✓</div>
-                                    <div class="check-content">
-                                        <strong>Berechtigung geprüft</strong>
-                                        <span>Du erfüllst alle Kriterien</span>
-                                    </div>
-                                    <div class="check-status">Erledigt</div>
-                                </div>
+                    <!-- Checklist Steps -->
+                    <div class="steps-container">
+                        <!-- Step 1: Berechtigung (already completed) -->
+                        <div class="step-item step-completed" id="eligibilityStep">
+                            <div class="step-number completed">✓</div>
+                            <div class="step-body">
+                                <h3 class="step-title">Berechtigung bestätigt</h3>
+                                <p class="step-description">Du erfüllst alle Kriterien</p>
                             </div>
-                            
-                            <div class="checklist-item pending" id="emailCapturedStep">
-                                <div class="checklist-header">
-                                    <div class="check-icon">2</div>
-                                    <div class="check-content">
-                                        <strong>Email erfassen</strong>
-                                        <span id="userEmailDisplay">Gib deine Kontaktdaten ein</span>
-                                    </div>
-                                    <div class="check-status">Offen</div>
-                                </div>
+                        </div>
+
+                        <!-- Step 2: Personal Data -->
+                        <div class="step-item step-active" id="personalDataStep">
+                            <div class="step-number">2</div>
+                            <div class="step-body">
+                                <h3 class="step-title">Angaben zur Person</h3>
+                                <p class="step-description">Wir brauchen deine Angaben zur Zuordnung</p>
                                 
-                                <!-- Email Form direkt im Step -->
-                                <div class="step-action" id="emailFormInline">
-                                    <div class="inline-form-wrapper">
-                                        <label for="fullNameInline" class="sr-only">Vollständiger Name</label>
-                                        <input type="text" id="fullNameInline" placeholder="Vollständiger Name" class="inline-input" required aria-label="Vollständiger Name eingeben">
-                                        <label for="emailAddressInline" class="sr-only">E-Mail Adresse</label>
-                                        <input type="email" id="emailAddressInline" placeholder="E-Mail Adresse" class="inline-input" required aria-label="E-Mail Adresse eingeben">
-                                        <div class="gdpr-checkbox">
-                                            <input type="checkbox" id="gdprConsent" required aria-required="true">
-                                            <label for="gdprConsent">Ich akzeptiere die <a href="/datenschutz.html">Datenschutzrichtlinie</a> und möchte Marketing-E-Mails erhalten.</label>
+                                <div class="step-content-expanded" id="personalDataContent">
+                                    <form class="personal-data-form" id="personalDataForm">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="firstName">Vorname *</label>
+                                                <input type="text" id="firstName" name="firstName" placeholder="Max" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="lastName">Nachname *</label>
+                                                <input type="text" id="lastName" name="lastName" placeholder="Mustermann" required>
+                                            </div>
                                         </div>
-                                        <button class="btn btn-primary btn-inline" id="emailCaptureBtn">
-                                            <span>Reservierung sichern →</span>
-                                        </button>
-                                    </div>
-                                    <p class="inline-disclaimer">🔒 Deine Daten sind sicher und werden nicht an Dritte weitergegeben</p>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="birthdate">Geburtsdatum *</label>
+                                                <input type="date" id="birthdate" name="birthdate" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">E-Mail-Adresse *</label>
+                                                <input type="email" id="email" name="email" placeholder="max@example.com" required>
+                                            </div>
+                                        </div>
+
+                                        <!-- Checkboxes -->
+                                        <div class="checkboxes-section">
+                                            <div class="checkbox-group required-consent">
+                                                <input type="checkbox" id="agreeConsent" name="agreeConsent" required>
+                                                <label for="agreeConsent">
+                                                    Ich akzeptiere die <a href="/datenschutz.html" target="_blank">Datenschutzrichtlinie</a> und <a href="/agb.html" target="_blank">AGB</a> <span class="required-badge">Pflicht</span>
+                                                </label>
+                                            </div>
+                                            <div class="checkbox-group optional-consent">
+                                                <input type="checkbox" id="marketingConsent" name="marketingConsent">
+                                                <label for="marketingConsent">
+                                                    Ja, ich möchte Updates & Angebote erhalten <span class="optional-badge">optional</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary btn-full" id="submitPersonalData">Weiter zu App-Download →</button>
+                                    </form>
                                 </div>
                             </div>
-                            
-                            <div class="checklist-item pending" id="appDownloadStep">
-                                <div class="checklist-header">
-                                    <div class="check-icon">3</div>
-                                    <div class="check-content">
-                                        <strong>App herunterladen</strong>
-                                        <span>Wähle dein Betriebssystem</span>
-                                    </div>
-                                    <div class="check-status">Offen</div>
-                                </div>
+                        </div>
+
+                        <!-- Step 3: Download App & Register -->
+                        <div class="step-item step-pending" id="appDownloadStep">
+                            <div class="step-number">3</div>
+                            <div class="step-body">
+                                <h3 class="step-title">App herunterladen & registrieren</h3>
+                                <p class="step-description">Mit derselben E-Mail in der App registrieren</p>
                                 
-                                <!-- OS Selection direkt im Step -->
-                                <div class="step-action hidden" id="osSelectionInline">
-                                    <div class="inline-os-buttons">
-                                        <button class="os-button-compact ios-button" id="iosButton" aria-label="iPhone oder iPad wählen">
-                                            <span class="os-icon-compact">🍎</span>
-                                            <span class="os-label">iPhone / iPad</span>
-                                        </button>
-                                        <button class="os-button-compact android-button" id="androidButton" aria-label="Android-Gerät wählen">
-                                            <span class="os-icon-compact">🤖</span>
-                                            <span class="os-label">Android</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="checklist-item pending" id="registerStep">
-                                <div class="checklist-header">
-                                    <div class="check-icon">4</div>
-                                    <div class="check-content">
-                                        <strong>In App registrieren</strong>
-                                        <span class="email-match-hint">⚠️ Wichtig: Nutze <strong id="emailForApp">dieselbe Email</strong> beim Registrieren</span>
-                                    </div>
-                                    <div class="check-status">Offen</div>
-                                </div>
-                                
-                                <!-- App Download direkt im Step -->
-                                <div class="step-action hidden" id="appDownloadInline">
-                                    <div class="app-download-buttons">
-                                        <a id="appStoreLink" href="https://apps.apple.com/ch/app/finanu-schweiz/id6738845629" target="_blank" rel="noopener noreferrer" class="app-button apple-store" aria-label="Download on Apple App Store">
+                                <div class="step-content-expanded" id="appDownloadContent">
+                                    <div class="app-stores">
+                                        <a href="https://apps.apple.com/ch/app/finanu-schweiz/id6738845629" target="_blank" rel="noopener noreferrer" class="store-button apple">
                                             <img src="assets/app-badges/apple-app-store.svg" alt="Download on Apple App Store">
                                         </a>
-                                        <a id="playStoreLink" href="https://play.google.com/store/apps/details?id=app.ditcompany.finanu&pcampaignid=web_share&pli=1" target="_blank" rel="noopener noreferrer" class="app-button google-play" aria-label="Get it on Google Play">
+                                        <a href="https://play.google.com/store/apps/details?id=app.ditcompany.finanu" target="_blank" rel="noopener noreferrer" class="store-button google">
                                             <img src="assets/app-badges/google-play-store.svg" alt="Get it on Google Play">
                                         </a>
                                     </div>
-                                </div>
-                            </div>
-                            
-                            <div class="checklist-item pending" id="uploadStep">
-                                <div class="checklist-header">
-                                    <div class="check-icon">5</div>
-                                    <div class="check-content">
-                                        <strong>Autoversicherungspolice hochladen</strong>
-                                        <span>Lade deine Autoversicherungspolice in der App hoch</span>
+                                    <div class="app-warning">
+                                        <strong>⚠️ Wichtig:</strong> Registriere dich mit derselben E-Mail-Adresse in der App, sonst ist dein Vignetten-Angebot nicht gesichert!
                                     </div>
-                                    <div class="check-status">Offen</div>
-                                </div>
-                            </div>
-                            
-                            <div class="checklist-item goal" id="goalStep">
-                                <div class="checklist-header">
-                                    <div class="check-icon">🎯</div>
-                                    <div class="check-content">
-                                        <strong>Deine Gratis E-Vignette</strong>
-                                        <span>Jedes Jahr wieder – solange du aktiver Nutzer bist</span>
-                                    </div>
-                                    <div class="check-status goal">Ziel</div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="checklist-timer">
-                            <span class="timer-icon">⏱️</span>
-                            <span>Deine Reservierung ist <strong>24 Stunden</strong> gültig</span>
+
+                        <!-- Step 4: Upload Insurance Policy -->
+                        <div class="step-item step-pending" id="uploadStep">
+                            <div class="step-number">4</div>
+                            <div class="step-body">
+                                <h3 class="step-title">Autoversicherungspolice hochladen</h3>
+                                <p class="step-description">Lade deine aktuelle Police hoch</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 5: Goal - Free E-Vignette -->
+                        <div class="step-item step-goal" id="goalStep">
+                            <div class="step-number">5</div>
+                            <div class="step-body">
+                                <h3 class="step-title">Deine Gratis E-Vignette</h3>
+                                <p class="step-description">Jährlich gratis – solange du aktiv bist</p>
+                                <div class="goal-badge">
+                                    <span class="badge-icon">🎯</span>
+                                    <span class="badge-text">Ziel erreicht</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- Back to Home Button -->
-                    <button class="btn btn-secondary" id="backToHomeBtn" style="margin-top: 24px; width: 100%;">← Zurück zur Startseite</button>
+
+                    <!-- Timer & CTA -->
+                    <div class="results-footer">
+                        <div class="reservation-timer">
+                            <span class="timer-badge">⏱️ Reserviert für 24 Stunden</span>
+                        </div>
+                        <button class="btn btn-secondary btn-full" id="backToHomeBtn">← Zurück zur Startseite</button>
+                    </div>
                 </div>
             </div>
         </section>
