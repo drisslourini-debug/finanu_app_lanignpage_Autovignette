@@ -1143,7 +1143,7 @@ img {
 .step-item {
     display: flex;
     gap: 16px;
-    padding: 24px;
+    padding: 16px 14px;
     background: #f8f9fa;
     border-radius: 12px;
     border-left: 4px solid #e9ecef;
@@ -1232,8 +1232,8 @@ img {
 }
 
 .step-content-expanded {
-    margin-top: 20px;
-    padding-top: 20px;
+    margin-top: 12px;
+    padding-top: 12px;
     border-top: 1px solid #e9ecef;
     width: 100%;
 }
@@ -1242,7 +1242,7 @@ img {
 .personal-data-form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     width: 100%;
     max-width: 520px;
     align-items: flex-start;
@@ -1259,18 +1259,18 @@ img {
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .form-group label {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-dark);
 }
 
 .form-group input {
-    height: 48px;
-    padding: 12px 14px;
+    height: 46px;
+    padding: 12px 12px;
     border: 1.5px solid #e9ecef;
     border-radius: 8px;
     font-size: 0.95rem;
@@ -1292,8 +1292,8 @@ img {
 .checkboxes-section {
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    padding: 18px;
+    gap: 12px;
+    padding: 14px;
     background: #f8f9fa;
     border-radius: 8px;
 }
