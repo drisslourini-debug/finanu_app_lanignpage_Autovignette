@@ -2213,8 +2213,8 @@ img {
 }
 
 .time-estimate {
+    display: none !important;
     color: var(--text-light);
-    display: flex;
     align-items: center;
     gap: 4px;
 }
