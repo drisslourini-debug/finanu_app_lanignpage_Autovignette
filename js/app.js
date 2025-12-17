@@ -355,7 +355,7 @@ function nextQuestion() {
 
         // Hide next button on last question and show submit instead
         if (quizState.currentStep === 2) {
-            nextBtn.textContent = 'Quiz abschließen';
+            nextBtn.textContent = 'Quiz abschliessen';
         }
     } else {
         // Submit quiz
