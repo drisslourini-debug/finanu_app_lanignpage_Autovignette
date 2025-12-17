@@ -266,6 +266,20 @@ img {
     margin-bottom: 24px;
 }
 
+.cta-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.hero-app-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(80, 184, 231, 0.2);
+    object-fit: contain;
+}
+
 .btn-glow {
     position: relative;
     overflow: hidden;
@@ -3542,6 +3556,16 @@ img {
 
     .cta-group {
         margin-bottom: 16px;
+    }
+
+    .cta-with-icon {
+        flex-direction: column-reverse;
+        gap: 12px;
+    }
+
+    .hero-app-icon {
+        width: 50px;
+        height: 50px;
     }
 
     .btn-lg {
